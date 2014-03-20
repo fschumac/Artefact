@@ -1,0 +1,555 @@
+@base <http://creativeartefact.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix sc: <http://schema.org/> .
+@prefix db: <http://dbpedia.org/ontology> .
+@prefix dc: <http://purl.org/dc/terms> .
+
+@prefix mbo: <http://creativeartefact.org/ontology#> .
+
+
+<> a owl:Ontology ;
+   rdfs:label "Music Business Vocabulary" .
+
+
+mbo:Label rdfs:subClassOf foaf:Organization;
+	rdfs:label "Record Label"@en .
+
+mbo:labelCode a rdf:Property;
+	rdfs:domain mbo:Label;	
+	rdfs:range xsd:integer;
+	rdfs:label "Label Code"@en .
+
+mbo:Artist rdfs:subClassOf foaf:Agent
+    rdfs:label "Artist"@en .
+
+mbo:ArtistPerson rdfs:subClassOf foaf:Person;
+    rdfs:subClassOf mbo:Artist;
+    rdfs:label "Artist (Person)"@en .
+
+mbo:ArtistGroup rdfs:subClassOf foaf:Group;
+    rdfs:subClassOf mbo:Artist;
+    rdfs:label "Artist (Group)"@en .
+
+mbo:Author rdfs:subClassOf foaf:Person ;
+	rdfs:label "Author"@en .
+
+mbo:alternativeSpelling a rdf:Property;
+	rdfs:domain mbo:Author;
+	rdfs:range xsd:string;
+	rdfs:label "Alternative Spelling"@en .
+
+mbo:pseudonym a rdf:Property;
+	rdfs:domain mbo:Author;
+	rdfs:range xsd:string;
+	rdfs:label "Pseudonym"@en .
+
+mbo:representedThrough a rdf:Property;
+	rdfs:domain mbo:Author;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Represented Through (Publisher)"@en .
+
+mbo:Publisher rdfs:subClassOf foaf:Organization;
+	rdfs:label "Publisher"@en .
+
+mbo:gemaNumber a rdf:Property;
+	rdfs:domain mbo:Publisher;
+	rdfs:range xsd:integer;
+	rdfs:label "GEMA number"@en .
+
+mbo:Work a owl:Class;
+	owl:equivalentClass mo:MusicalWork;
+	rdfs:label "(Creative) Work"@en .
+
+mbo:publishedBy a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Published by"@en .
+
+mbo:mainPublisher a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Main Publisher"@en .
+
+mbo:copyrightCollectiveNumber a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range xsd:string;
+	rdfs:label "Copyright Collective Number"@en .
+
+
+mbo:iswc_number a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range xsd:string;
+	rdfs:label "ISWC number"@en .
+
+mbo:textLanguage a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range xsd:string;
+	rdfs:label "Text Language"@en .
+
+mbo:filmMusic a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range db:Film;
+	rdfs:label "Film Music for"@en.
+
+mbo:beteiligungsart a rdf:Property ;
+	rdfs:domain mbo:Contract;
+	rdfs:label "Beteiligungsart"@de .
+
+mbo:sharePerformancesCreator a rdf:Property ;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Share Performances Creator"@en .
+
+mbo:shareCopyCreator a rdf:Property ;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Share Copy Creator"@en .
+
+mbo:sharePerformancesPublisher a rdf:Property ;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Share Performances Publisher"@en .
+
+mbo:shareCopyPublisher a rdf:Property ;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Share Copy Publisher"@en .
+
+mbo:specialTitle a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range xsd:string;
+	rdfs:label "Special Title"@en .
+
+mbo:publisherPrint a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Publisher Print"@en .
+
+mbo:administratingPublisher a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Administration Publisher"@en .
+
+mbo:otherPublisher a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Other Publisher"@en .
+
+
+mbo:ContributingPerson rdfs:subClassOf foaf:Person;
+	rdfs:label "Contributor (Person)"@en .
+
+mbo:contributer a rdf:Property ;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:ContributingPerson;
+	rdfs:label "Contributing"@en .
+
+
+mbo:miscellaneous a rdf:Property ;
+	rdfs:range xsd:string;
+	rdfs:label "Miscellaneous"@en .
+
+mbo:applicant a rdf:Property;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:PublisherEmployee;
+	rdfs:label "Applicant"@en .
+
+mbo:PublisherEmployee rdfs:subClassOf foaf:Person;	
+	rdfs:label "Publisher Employee"@en .
+
+mbo:title a rdf:Property;
+	rdfs:domain mbo:Work;
+	rdfs:range xsd:string;
+	rdfs:label "Title"@en .
+
+mbo:length a rdf:Property;
+	rdfs:range xsd:integer;
+	rdfs:label "Length"@en .
+
+mbo:composedBy rdfs:subPropertyOf dc:creator;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:MusicArtist;
+	rdfs:label "Composed by"@en .
+
+mbo:lyricsBy a rdf:Property;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Author;
+	rdfs:label "Lyrics by"@en .
+
+mbo:arrangedBy a rdf:Property;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Author;
+	rdfs:label "Arranged by"@en .
+
+mbo:registratedFor a rdf:Property;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Registrated for (Publisher)"@en .
+
+mbo:Album rdfs:subClassOf mo:Album;
+	rdfs:label "Album"@en .
+
+mbo:albumTrack a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Track;
+	rdfs:label "Track on this Album"@en .
+
+mbo:madeBy rdfs:subPropertyOf dc:creator;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:MusicGroup, mbo:MusicArtist;
+	rdfs:label "Maker"@en .
+
+mbo:catalogueNumber a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:string;
+	rdfs:label "Catalogue Number"@en .
+
+mbo:upcBarcode a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:integer;
+	rdfs:label "UPC Barcode"@en .
+
+mbo:barCodeOwner a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:integer;
+	xsd:totalDigits 6;
+	rdfs:label "Bar code owner"@en .
+
+mbo:freeNumber a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:integer;
+	xsd:totalDigits 5;
+	rdfs:label "Free number"@en .
+
+mbo:releaseDatePhysical a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:date;
+	rdfs:label "Physical Release date"@en .
+
+mbo:releaseDateDigital a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:date;
+	rdfs:label "Digital Release date"@en .
+
+mbo:electronicPresskit a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range foaf:homepage;
+	rdfs:label "Electronic press kit"@en .
+
+mbo:streamingPlayer a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range foaf:homepage;
+	rdfs:label "Streaming player"@en .
+
+mbo:albumTitle a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:string;
+	rdfs:label "Album Title"@en .
+
+mbo:associatedGenre a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:string;
+	rdfs:label "Associated Genre"@en .
+
+mbo:producedIn a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range sc:Place;
+	rdfs:label "Produced in"@en .
+
+
+mbo:releaseFormat a owl:DatatypeProperty;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Medium;
+	rdfs:label "Release format"@en .
+
+mbo:Medium a owl:Class;
+	rdfs:label "Medium"@en .
+
+mbo:LP a mbo:Medium;
+	rdfs:label "LP"@en .
+
+mbo:CD a mbo:Medium;
+	rdfs:label "CD"@en .
+
+mbo:digital a mbo:Medium;
+	rdfs:label "digital"@en .
+
+
+mbo:mixedBy a rdf:Property;
+	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:range mbo:Author;
+	rdfs:label "Mixed by"@en .
+
+mbo:masteredBy a rdf:Property;
+	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:range mbo:Author;
+	rdfs:label "Mastered by"@en .
+
+mbo:artworkDesignedBy a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Author;
+	rdfs:label "Artwork designed by"@en .
+
+mbo:photosBy a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Author;
+	rdfs:label "Photos by"@en .
+
+mbo:textedBy a rdf:Property;
+	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:range mbo:Author;
+	rdfs:label "Texted by"@en .
+
+mbo:ExecutiveProducer rdfs:subClassOf mbo:Producer;
+	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:range mbo:Author;
+	rdfs:label "Executive Producer"@en .
+
+mbo:Producer rdfs:subClassOf mbo:Author;
+    rdfs:label "Producer"@en .
+
+mbo:producedBy a rdf:Property;
+	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:range mbo:Producer;
+	rdfs:label "Produced by"@en .
+
+mbo:compiledBy a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Author;
+	rdfs:label "Compiled by"@en .
+
+mbo:sequencedBy a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Author;
+	rdfs:label "Sequenced by"@en .
+
+mbo:description a rdf:Property;
+	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:range xsd:string;
+	rdfs:label "Description"@en .
+
+mbo:associatedLabel a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range mbo:Label;
+	rdfs:label "Associated label"@en .
+
+mbo:territoriesDigitalDistribution a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range xsd:string;
+	rdfs:label "Territories digital distribution"@en .
+
+mbo:numberOfPhysicalRecords a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:integer;
+	rdfs:label "Number of physical records"@en .
+
+mbo:dateOfProduction a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range xsd:date;
+	rdfs:label "Date of production"@en .
+
+mbo:contractCollectionSociety a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range foaf:Organization;
+	rdfs:label "Contract Collection Society"@en .
+
+mbo:pressingPlant a rdf:Property;
+	rdfs:domain mbo:Album;
+	rdfs:range foaf:Organization;
+	rdfs:label "Pressing plant"@en .
+
+
+mbo:Track a owl:Class;
+	owl:sameAs mo:Track; 
+	rdfs:label "Track"@en .
+
+mbo:manifestationOf a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range mbo:Work;
+	rdfs:label "Manifestation of work"@en .
+
+mbo:isrcCode a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:integer;
+	rdfs:label "ISRC Code"@en .
+
+mbo:instrumentation a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range rdf:List;
+	rdfs:label "Instrumentation"@en .
+
+mbo:style a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:string;
+	rdfs:label "Style"@en .
+
+mbo:vocals a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range "female";
+	rdfs:range "male";
+	rdfs:range "choir";
+	rdfs:range "instrumental";
+	rdfs:label "Vocals"@en .
+
+mbo:mood a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:string;
+	rdfs:label "Moods"@en .
+
+mbo:liveRecording a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:boolean;
+	rdfs:label "Live Recording"@en .
+
+mbo:potpurri a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:boolean;
+	rdfs:label "Potpurri"@en .
+
+mbo:version a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range "remix";
+	rdfs:range "radio edit";
+	rdfs:label "Version"@en .
+
+mbo:remixer a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range mbo:Author;
+	rdfs:label "Remixer"@en .
+
+mbo:graphicLyrics a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:boolean;
+	rdfs:label "Graphic Lyrics"@en .
+
+mbo:creditArtist a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range mbo:Author;
+	rdfs:label "Credit Artist"@en .
+
+mbo:role a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range xsd:string;
+	rdfs:label "Role"@en .
+
+mbo:RecordingContract rdfs:subClassOf mbo:Contract;
+	rdfs:label "Recording Contract"@en .
+
+mbo:PublishingContract rdfs:subClassOf mbo:Contract;
+	rdfs:label "Publishing Contract"@en .
+
+mbo:Contract a owl:Class;
+	rdfs:label "Contract"@en .
+
+mbo:territoriesExploitationRights a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range xsd:string;
+	rdfs:label "Territories Exploitation Rights"@en .
+
+mbo:royaltiesArtist a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Royalties Artist"@en .
+
+mbo:workingTitle a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range xsd:string;
+	rdfs:label "Working Title"@en .
+
+mbo:contractedWork a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range mbo:Work;
+	rdfs:label "Contracted Work"@en .
+
+mbo:Licenser rdfs:subClassOf foaf:Person;
+	rdfs:label "Licenser"@en .
+
+mbo:licensedBy a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range mbo:Licenser;
+	rdfs:label "Licensed by"@en .
+
+mbo:contractSpanBegin a rdf:Property;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:date;
+	rdfs:label "Begin Contract"@en .
+
+mbo:contractSpanEnd a rdf:Property;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:date;
+	rdfs:label "End Date Contract"@en .
+
+mbo:rescissionPeriod a rdf:Property;
+	rdfs:domain mbo:Contract;
+	rdfs:range xsd:duration;
+	rdfs:label "Rescission Period"@en .
+
+mbo:returnsAllowance a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Returns Allowance"@en .
+
+mbo:exclusiveRights a rdf:Property;
+	rdfs:domain mbo:RecordingContract;
+	rdfs:range xsd:boolean;
+	rdfs:label "Exclusive Rights"@en .
+
+
+mbo:involvedPublisher a rdf:Property;
+	rdfs:domain mbo:PublishingContract;
+	rdfs:range mbo:Publisher;
+	rdfs:label "Involved Publisher"@en. 
+
+mbo:contractedAuthor a rdf:Property;
+	rdfs:domain mbo:PublishingContract;
+	rdfs:range mbo:Author;
+	rdfs:label "Contracted Author"@en .
+
+mbo:split a rdf:Property;
+	rdfs:domain mbo:PublishingContract;
+	rdfs:range xsd:integer;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "Split"@en .
+
+mbo:contractedWork a rdf:Property;
+	rdfs:domain mbo:PublishingContract;
+	rdfs:range mbo:Work;
+	rdfs:label "Contracted Work"@en .
+
+mbo:AlbumTrack rdfs:subClassOf mbo:Track;
+	rdfs:label "Album Track"@en .
+
+mbo:takenFrom a rdf:Property;
+	rdfs:domain mbo:AlbumTrack;
+	rdfs:range mbo:Album;
+	rdfs:label "Taken From Album"@en .
+
+mbo:appearsOn a rdf:Property;
+	rdfs:domain mbo:AlbumTrack;
+	rdfs:range mbo:Album;
+	rdfs:label "Appears on"@en .
+
+mbo:trackNumber a rdf:Property;
+	rdfs:domain mbo:AlbumTrack;
+	rdfs:range xsd:integer;
+	rdfs:label "Track Number"@en .
+
+
