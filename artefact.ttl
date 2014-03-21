@@ -24,7 +24,7 @@ mbo:labelCode a rdf:Property;
 	rdfs:range xsd:integer;
 	rdfs:label "Label Code"@en .
 
-mbo:Artist rdfs:subClassOf foaf:Agent
+mbo:Artist rdfs:subClassOf foaf:Agent;
     rdfs:label "Artist"@en .
 
 mbo:ArtistPerson rdfs:subClassOf foaf:Person;
