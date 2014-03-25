@@ -181,7 +181,7 @@ mbo:length a rdf:Property;
 
 mbo:composedBy rdfs:subPropertyOf dc:creator;
 	rdfs:domain mbo:Work;
-	rdfs:range mbo:MusicArtist;
+	rdfs:range mbo:ArtistPerson;
 	rdfs:label "Composed by"@en .
 
 mbo:lyricsBy a rdf:Property;
@@ -209,7 +209,7 @@ mbo:albumTrack a rdf:Property;
 
 mbo:madeBy rdfs:subPropertyOf dc:creator;
 	rdfs:domain mbo:Album;
-	rdfs:range mbo:MusicGroup, mbo:MusicArtist;
+	rdfs:range mbo:Artist;
 	rdfs:label "Maker"@en .
 
 mbo:catalogueNumber a rdf:Property;
