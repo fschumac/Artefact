@@ -8,6 +8,7 @@
 @prefix sc: <http://schema.org/> .
 @prefix db: <http://dbpedia.org/ontology> .
 @prefix dc: <http://purl.org/dc/terms> .
+@prefix lgdo: <http://linkedgeodata.org/ontology> .
 
 @prefix mbo: <http://creativeartefact.org/ontology#> .
 
@@ -552,4 +553,68 @@ mbo:trackNumber a rdf:Property;
 	rdfs:range xsd:integer;
 	rdfs:label "Track Number"@en .
 
+mbo:MusicBrainzId a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Music Brainz Id"@en;
+	rdfs:comment "The Identifier of the object given by MusicBrainz"@en .
 
+mbo:sortName a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Sort Name"@en;
+	rdfs:comment "The sortname can be used to ensure correct sorting of the object"@en .
+
+mbo:annotation a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Annotation"@en;
+	rdfs:comment "A descriptive text about the object"@en .
+
+mbo:IPI a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Interested Parties Information Code (IPI)"@en;
+	rdfs:comment "The Interested Parties Information Code (IPI) is an identifying number assigned in the CISAC database to each Interested Party in musical rights management."@en .
+
+mbo:ISNI a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "International Standard Name Identifier (ISNI)"@en;
+	rdfs:comment "The International Standard Name Identifier (ISNI) is an ISO standard for uniquely identifying the public identities of contributors to media content."@en .
+
+mbo:gender a rdf:Property;
+	rdfs:domain mbo:ArtistPerson;
+	rdfs:range xsd:string;
+	rdfs:label "gender"@en;
+	owl:sameAs foaf:gender .
+
+mbo:beginArea a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range lgdo:Place;
+	rdfs:label "Begin Area"@en;
+	rdfs:comment "The area (city, country) where the artist started its activity"@en .
+
+mbo:area a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range lgdo:Place;
+	rdfs:label "Area"@en;
+	rdfs:comment "The area (city, country) where the artist is/was activ"@en .
+
+mbo:begin a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:date;
+	rdfs:label "Begin"@en;
+	rdfs:comment "The date of the begin of the artists activity"@en .
+	
+mbo:end a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:date;
+	rdfs:label "End"@en;
+	rdfs:comment "The date of the end of the artists activity"@en .
+	
+mbo:alias a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Alias"@en;
+	rdfs:comment "Other names of the artist"@en .
