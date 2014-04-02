@@ -8,7 +8,7 @@
 @prefix sc: <http://schema.org/> .
 @prefix db: <http://dbpedia.org/ontology> .
 @prefix dc: <http://purl.org/dc/terms> .
-@prefix lgdo: <http://linkedgeodata.org/ontology> .
+@prefix lgdo: <http://linkedgeodata.org/ontology/> .
 
 @prefix mbo: <http://creativeartefact.org/ontology#> .
 
