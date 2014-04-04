@@ -10,7 +10,7 @@
 @prefix dc: <http://purl.org/dc/terms> .
 @prefix lgdo: <http://linkedgeodata.org/ontology/> .
 
-@prefix mbo: <http://creativeartefact.org/ontology#> .
+@prefix mbo: <http://creativeartefact.org/ontology/> .
 
 
 <> a owl:Ontology ;
@@ -200,79 +200,81 @@ mbo:registratedFor a rdf:Property;
 	rdfs:range mbo:Publisher;
 	rdfs:label "Registrated for (Publisher)"@en .
 
-mbo:Album rdfs:subClassOf mo:Album;
-	rdfs:label "Album"@en .
+mbo:Release rdfs:subClassOf mo:Album;
+	rdfs:label "Release"@en ;
+	rdfs:comment "A publication of musical works, usually consists of one or more songs"@en .
 
 mbo:albumTrack a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Track;
 	rdfs:label "Track on this Album"@en .
 
 mbo:madeBy rdfs:subPropertyOf dc:creator;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Artist;
 	rdfs:label "Maker"@en .
 
 mbo:catalogueNumber a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
 mbo:upcBarcode a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:integer;
 	rdfs:label "UPC Barcode"@en .
 
 mbo:barCodeOwner a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:integer;
 	xsd:totalDigits 6;
 	rdfs:label "Bar code owner"@en .
 
 mbo:freeNumber a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:integer;
 	xsd:totalDigits 5;
 	rdfs:label "Free number"@en .
 
 mbo:releaseDatePhysical a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:date;
 	rdfs:label "Physical Release date"@en .
 
 mbo:releaseDateDigital a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:date;
 	rdfs:label "Digital Release date"@en .
 
 mbo:electronicPresskit a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range foaf:homepage;
 	rdfs:label "Electronic press kit"@en .
 
 mbo:streamingPlayer a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range foaf:homepage;
 	rdfs:label "Streaming player"@en .
 
-mbo:albumTitle a rdf:Property;
-	rdfs:domain mbo:Album;
+mbo:releaseTitle a rdf:Property;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
-	rdfs:label "Album Title"@en .
+	rdfs:label "Release Title"@en ;
+	owl:sameAs rdfs:label.
 
 mbo:associatedGenre a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Associated Genre"@en .
 
 mbo:producedIn a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range sc:Place;
 	rdfs:label "Produced in"@en .
 
 
 mbo:releaseFormat a owl:DatatypeProperty;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Medium;
 	rdfs:label "Release format"@en .
 
@@ -290,32 +292,32 @@ mbo:digital a mbo:Medium;
 
 
 mbo:mixedBy a rdf:Property;
-	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Track;
 	rdfs:range mbo:Author;
 	rdfs:label "Mixed by"@en .
 
 mbo:masteredBy a rdf:Property;
-	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Track;
 	rdfs:range mbo:Author;
 	rdfs:label "Mastered by"@en .
 
 mbo:artworkDesignedBy a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Author;
 	rdfs:label "Artwork designed by"@en .
 
 mbo:photosBy a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Author;
 	rdfs:label "Photos by"@en .
 
 mbo:textedBy a rdf:Property;
-	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Track;
 	rdfs:range mbo:Author;
 	rdfs:label "Texted by"@en .
 
 mbo:ExecutiveProducer rdfs:subClassOf mbo:Producer;
-	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Track;
 	rdfs:range mbo:Author;
 	rdfs:label "Executive Producer"@en .
 
@@ -323,27 +325,27 @@ mbo:Producer rdfs:subClassOf mbo:Author;
     rdfs:label "Producer"@en .
 
 mbo:producedBy a rdf:Property;
-	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Track;
 	rdfs:range mbo:Producer;
 	rdfs:label "Produced by"@en .
 
 mbo:compiledBy a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Author;
 	rdfs:label "Compiled by"@en .
 
 mbo:sequencedBy a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Author;
 	rdfs:label "Sequenced by"@en .
 
 mbo:description a rdf:Property;
-	rdfs:domain mbo:Album, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Track;
 	rdfs:range xsd:string;
 	rdfs:label "Description"@en .
 
 mbo:associatedLabel a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range mbo:Label;
 	rdfs:label "Associated label"@en .
 
@@ -353,22 +355,22 @@ mbo:territoriesDigitalDistribution a rdf:Property;
 	rdfs:label "Territories digital distribution"@en .
 
 mbo:numberOfPhysicalRecords a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:integer;
 	rdfs:label "Number of physical records"@en .
 
 mbo:dateOfProduction a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:date;
 	rdfs:label "Date of production"@en .
 
 mbo:contractCollectionSociety a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range foaf:Organization;
 	rdfs:label "Contract Collection Society"@en .
 
 mbo:pressingPlant a rdf:Property;
-	rdfs:domain mbo:Album;
+	rdfs:domain mbo:Release;
 	rdfs:range foaf:Organization;
 	rdfs:label "Pressing plant"@en .
 
@@ -540,12 +542,12 @@ mbo:AlbumTrack rdfs:subClassOf mbo:Track;
 
 mbo:takenFrom a rdf:Property;
 	rdfs:domain mbo:AlbumTrack;
-	rdfs:range mbo:Album;
+	rdfs:range mbo:Release;
 	rdfs:label "Taken From Album"@en .
 
 mbo:appearsOn a rdf:Property;
 	rdfs:domain mbo:AlbumTrack;
-	rdfs:range mbo:Album;
+	rdfs:range mbo:Release;
 	rdfs:label "Appears on"@en .
 
 mbo:trackNumber a rdf:Property;
@@ -618,3 +620,10 @@ mbo:alias a rdf:Property;
 	rdfs:range xsd:string;
 	rdfs:label "Alias"@en ;
 	rdfs:comment "Other names of the artist"@en .
+
+mbo:disambiguation a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Disambiguation"@en ;
+	rdfs:comment "A description of the artist to distingush her from artists with the same or similar names"@en ;
+	owl:sameAs rdfs:comment .
