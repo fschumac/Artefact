@@ -173,8 +173,11 @@ mbo:PublisherEmployee rdfs:subClassOf foaf:Person;
 
 mbo:title a rdf:Property;
 	rdfs:domain mbo:Work;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
-	rdfs:label "Title"@en .
+	rdfs:label "Title"@en ;
+	owl:sameAs rdfs:label.
 
 mbo:length a rdf:Property;
 	rdfs:range xsd:integer;
@@ -219,32 +222,37 @@ mbo:catalogueNumber a rdf:Property;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
-mbo:upcBarcode a rdf:Property;
+mbo:upcBarcode a owl:class;
+	rdfs:label "UPC Barcode"@en ;
+	rdfs:comment "A barcode to identify a sellable good"@en .
+
+mbo:hasBarcode a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:integer;
 	rdfs:label "UPC Barcode"@en .
 
-mbo:barCodeOwner a rdf:Property;
-	rdfs:domain mbo:Release;
+mbo:upcBarcodeOwner a rdf:Property;
+	rdfs:domain mbo:upcBarcode;
 	rdfs:range xsd:integer;
 	xsd:totalDigits 6;
 	rdfs:label "Bar code owner"@en .
 
-mbo:freeNumber a rdf:Property;
-	rdfs:domain mbo:Release;
+mbo:upcBarcodeFreeNumber a rdf:Property;
+	rdfs:domain mbo:upcBarcode;
 	rdfs:range xsd:integer;
 	xsd:totalDigits 5;
 	rdfs:label "Free number"@en .
 
-mbo:releaseDatePhysical a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range xsd:date;
-	rdfs:label "Physical Release date"@en .
+mbo:upcBarcodeCheckDigit a rdf:Property;
+	rdfs:domain mbo:upcBarcode;
+	rdfs:range xsd:integer;
+	xsd:totalDigits 1;
+	rdfs:label "Check Digit"@en .
 
-mbo:releaseDateDigital a rdf:Property;
+mbo:releaseDate a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:date;
-	rdfs:label "Digital Release date"@en .
+	rdfs:label "Release date"@en .
 
 mbo:electronicPresskit a rdf:Property;
 	rdfs:domain mbo:Release;
@@ -256,12 +264,6 @@ mbo:streamingPlayer a rdf:Property;
 	rdfs:range foaf:homepage;
 	rdfs:label "Streaming player"@en .
 
-mbo:releaseTitle a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range xsd:string;
-	rdfs:label "Release Title"@en ;
-	owl:sameAs rdfs:label.
-
 mbo:associatedGenre a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
@@ -271,7 +273,6 @@ mbo:producedIn a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range sc:Place;
 	rdfs:label "Produced in"@en .
-
 
 mbo:releaseFormat a owl:DatatypeProperty;
 	rdfs:domain mbo:Release;
@@ -289,7 +290,6 @@ mbo:CD a mbo:Medium;
 
 mbo:digital a mbo:Medium;
 	rdfs:label "digital"@en .
-
 
 mbo:mixedBy a rdf:Property;
 	rdfs:domain mbo:Release, mbo:Track;
@@ -374,6 +374,17 @@ mbo:pressingPlant a rdf:Property;
 	rdfs:range foaf:Organization;
 	rdfs:label "Pressing plant"@en .
 
+mbo:releaseStatus a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range xsd:string;
+	rdfs:label "Release Status"@en ;
+	rdfs:comment "Describes how 'official' the release is. Possible values are 'official', 'promotional', 'bootleg' or 'pseudo-release'"@en .
+
+mbo:packaging a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range xsd:string;
+	rdfs:label "Packing"@en ;
+	rdfs:comment "The packaging used for the release. Possible values are 'Jewel Case', 'Slim Jewel Case', 'Digipak', 'Cardboard/Paper Sleeve', 'Keep Case', 'None', 'Cassette Case', 'Book', 'Fatbox', 'Snap Case', 'Gatefold Cover' or 'Discbox Slider'"@en . 
 
 mbo:Track a owl:Class;
 	owl:sameAs mo:Track; 
@@ -557,6 +568,7 @@ mbo:trackNumber a rdf:Property;
 
 mbo:MusicBrainzId a rdf:Property;
 	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:ReleaseGroup;
 	rdfs:range xsd:string;
 	rdfs:label "Music Brainz Id"@en ;
 	rdfs:comment "The Identifier of the object given by MusicBrainz"@en .
@@ -627,3 +639,44 @@ mbo:disambiguation a rdf:Property;
 	rdfs:label "Disambiguation"@en ;
 	rdfs:comment "A description of the artist to distingush her from artists with the same or similar names"@en ;
 	owl:sameAs rdfs:comment .
+	
+mbo:hasRelease a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range mbo:Release;
+	rdfs:label "has Release"@en ;
+	rdfs:comment "The release of an artist"@en .
+	
+mbo:ReleaseGroup a owl:Class;
+	rdfs:label "Release Group"@en ;
+	rdfs:comment "A group of releases that contains the different release formats"@en .
+
+mbo:hasReleaseGroup a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range mbo:ReleaseGroup;
+	rdfs:label "has Release Group"@en ;
+	rdfs:comment "A release group of an artist"@en .
+
+mbo:containsRelease a rdf:Property;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:range mbo:Release;
+	rdfs:label "contains Release"@en ;
+	rdfs:comment "a specific release of a release group"@en .
+
+mbo:ReleaseGroupType a rdf:Property;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:range xsd:string;
+	rdfs:label "Release Group Type"@en ;
+	rdfs:comment "describes which kind a release group is, like 'album', 'ep', 'single', 'broadcast' or 'other'"@en .
+
+mbo:firstReleaseDate a rdf:Property;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:range xsd:date;
+	rdfs:label "First Release Date"@en ;
+	rdfs:comment "The date when a release of the release group was published the first time"@en .
+
+mbo:Tag a rdf:Property;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:range xsd:string;
+	rdfs:label "Tag"@en ;
+	rdfs:comment "A describing tag of the entity"@en .
+
