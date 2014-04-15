@@ -82,9 +82,10 @@ mbo:copyrightCollectiveNumber a rdf:Property ;
 	rdfs:label "Copyright Collective Number"@en .
 
 
-mbo:iswc_number a rdf:Property ;
+mbo:iswcNumber a rdf:Property ;
 	rdfs:domain mbo:Work;
-	rdfs:range xsd:string;
+	rdfs:range xsd:integer;
+	xsd:totalDigits 10;
 	rdfs:label "ISWC number"@en .
 
 mbo:textLanguage a rdf:Property ;
@@ -386,32 +387,58 @@ mbo:packaging a rdf:Property;
 	rdfs:label "Packing"@en ;
 	rdfs:comment "The packaging used for the release. Possible values are 'Jewel Case', 'Slim Jewel Case', 'Digipak', 'Cardboard/Paper Sleeve', 'Keep Case', 'None', 'Cassette Case', 'Book', 'Fatbox', 'Snap Case', 'Gatefold Cover' or 'Discbox Slider'"@en . 
 
+mbo:LanguageOfTracklist a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range dc:ISO639-3;
+	rdfs:label "Language of tracklist"@en ;
+	rdfs:comment "The language the tracklist is written in. Possible values taken from ISO 639-3."@en .
+
+mbo:ScriptOfTracklist a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range xsd:string;
+	rdfs:label "Script of tracklist"@en ;
+	rdfs:comment "The script used to write the track list. Possible values taken from ISO 15924."@en .
+
 mbo:Track a owl:Class;
 	owl:sameAs mo:Track; 
-	rdfs:label "Track"@en .
+	rdfs:label "Track"@en ;
+	rdfs:comment "The way a recording is represented on a particular release."@en .
+
+mbo:Recording a owl:Class;
+	rdfs:label "Recording"@en ;
+	rdfs:comment "The recording represents a distinct audio and is the manifestation of a musical work."@en .
 
 mbo:manifestationOf a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range mbo:Work;
-	rdfs:label "Manifestation of work"@en .
+	rdfs:label "Manifestation of work"@en ;
+	rdfs:comment "Links a recording to its underlying work"@en .
+
+mbo:represents a rdf:Property;
+	rdfs:domain mbo:Track;
+	rdfs:range mbo:Recording;
+	rdfs:label "represents"@en ;
+	rdfs:comment "Links a track that appears on a release to a recording."@en .
 
 mbo:isrcCode a rdf:Property;
-	rdfs:domain mbo:Track;
-	rdfs:range xsd:integer;
+	rdfs:domain mbo:Recording;
+	rdfs:range xsd:string;
+	rdfs:maxLength 12;
 	rdfs:label "ISRC Code"@en .
+	rdfs:comment "The International Standard Recording Code of the recording."@en .
 
 mbo:instrumentation a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range rdf:List;
 	rdfs:label "Instrumentation"@en .
 
 mbo:style a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:label "Style"@en .
 
 mbo:vocals a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range "female";
 	rdfs:range "male";
 	rdfs:range "choir";
@@ -419,41 +446,44 @@ mbo:vocals a rdf:Property;
 	rdfs:label "Vocals"@en .
 
 mbo:mood a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:label "Moods"@en .
 
+# liveRecording als Klasse (Sub-Recording) modellieren?
 mbo:liveRecording a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range xsd:boolean;
 	rdfs:label "Live Recording"@en .
 
+# Recording als Klasse (Sub-Recording) modellieren?
 mbo:potpurri a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range xsd:boolean;
 	rdfs:label "Potpurri"@en .
 
 mbo:version a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range "remix";
 	rdfs:range "radio edit";
 	rdfs:label "Version"@en .
 
 mbo:remixer a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range mbo:Author;
 	rdfs:label "Remixer"@en .
 
 mbo:graphicLyrics a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range xsd:boolean;
 	rdfs:label "Graphic Lyrics"@en .
 
 mbo:creditArtist a rdf:Property;
-	rdfs:domain mbo:Track;
+	rdfs:domain mbo:Recording;
 	rdfs:range mbo:Author;
 	rdfs:label "Credit Artist"@en .
 
+# die Rolle eines Tracks? Probably this must be removed
 mbo:role a rdf:Property;
 	rdfs:domain mbo:Track;
 	rdfs:range xsd:string;
@@ -548,27 +578,25 @@ mbo:contractedWork a rdf:Property;
 	rdfs:range mbo:Work;
 	rdfs:label "Contracted Work"@en .
 
-mbo:AlbumTrack rdfs:subClassOf mbo:Track;
-	rdfs:label "Album Track"@en .
-
-mbo:takenFrom a rdf:Property;
-	rdfs:domain mbo:AlbumTrack;
-	rdfs:range mbo:Release;
-	rdfs:label "Taken From Album"@en .
-
-mbo:appearsOn a rdf:Property;
-	rdfs:domain mbo:AlbumTrack;
-	rdfs:range mbo:Release;
-	rdfs:label "Appears on"@en .
+mbo:containsTrack a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range mbo:Track;
+	rdfs:label "Contains Track"@en ;
+	rdfs:comment "Links a Track to the containing release."@en ;
 
 mbo:trackNumber a rdf:Property;
-	rdfs:domain mbo:AlbumTrack;
+	rdfs:domain mbo:Track;
 	rdfs:range xsd:integer;
-	rdfs:label "Track Number"@en .
+	rdfs:label "Track Number"@en ;
+	rdfs:comment "The position of the track on the release."@en .
 
 mbo:MusicBrainzId a rdf:Property;
-	rdfs:domain mbo:Artist;
-	rdfs:domain mbo:ReleaseGroup;
+	rdfs:domain mbo:Artist,
+		mbo:ReleaseGroup,
+		mbo:Release,
+		mbo:Track,
+		mbo:Recording,
+		mbo:Work;
 	rdfs:range xsd:string;
 	rdfs:label "Music Brainz Id"@en ;
 	rdfs:comment "The Identifier of the object given by MusicBrainz"@en .
@@ -581,9 +609,13 @@ mbo:sortName a rdf:Property;
 
 mbo:annotation a rdf:Property;
 	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Annotation"@en ;
-	rdfs:comment "A descriptive text about the object"@en .
+	rdfs:comment "A descriptive text about the element"@en ;
+	owl:sameAs rdfs:comment .
+
 
 mbo:IPI a rdf:Property;
 	rdfs:domain mbo:Artist;
@@ -635,10 +667,11 @@ mbo:alias a rdf:Property;
 
 mbo:disambiguation a rdf:Property;
 	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:ReleaseGroup;
+	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Disambiguation"@en ;
-	rdfs:comment "A description of the artist to distingush her from artists with the same or similar names"@en ;
-	owl:sameAs rdfs:comment .
+	rdfs:comment "A description of the element to distingush it from elements with the same or similar names"@en .
 	
 mbo:hasRelease a rdf:Property;
 	rdfs:domain mbo:Artist;
