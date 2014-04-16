@@ -84,8 +84,8 @@ mbo:copyrightCollectiveNumber a rdf:Property ;
 
 mbo:iswcNumber a rdf:Property ;
 	rdfs:domain mbo:Work;
-	rdfs:range xsd:integer;
-	xsd:totalDigits 10;
+	rdfs:range xsd:string;
+	rdfs:maxLength 13;
 	rdfs:label "ISWC number"@en .
 
 mbo:textLanguage a rdf:Property ;
@@ -608,9 +608,11 @@ mbo:sortName a rdf:Property;
 	rdfs:comment "The sortname can be used to ensure correct sorting of the object"@en .
 
 mbo:annotation a rdf:Property;
-	rdfs:domain mbo:Artist;
-	rdfs:domain mbo:ReleaseGroup;
-	rdfs:domain mbo:Release;
+	rdfs:domain mbo:Artist,
+		mbo:ReleaseGroup,
+		mbo:Release,
+		mbo:Recording,
+		mbo:Work;
 	rdfs:range xsd:string;
 	rdfs:label "Annotation"@en ;
 	rdfs:comment "A descriptive text about the element"@en ;
