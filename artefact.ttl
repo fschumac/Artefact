@@ -6,8 +6,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix mo: <http://purl.org/ontology/mo/> .
 @prefix sc: <http://schema.org/> .
-@prefix db: <http://dbpedia.org/ontology> .
-@prefix dc: <http://purl.org/dc/terms> .
+@prefix db: <http://dbpedia.org/ontology/> .
+@prefix dc: <http://purl.org/dc/terms/> .
 @prefix lgdo: <http://linkedgeodata.org/ontology/> .
 
 @prefix mbo: <http://creativeartefact.org/ontology/> .
@@ -71,16 +71,16 @@ mbo:publishedBy a rdf:Property ;
 	rdfs:range mbo:Publisher;
 	rdfs:label "Published by"@en .
 
-mbo:mainPublisher a rdf:Property ;
+mbo:coPublishedBy a rdf:Property ;
 	rdfs:domain mbo:Work;
 	rdfs:range mbo:Publisher;
-	rdfs:label "Main Publisher"@en .
+	rdfs:label "Co-published by"@en .
 
 mbo:copyrightCollectiveNumber a rdf:Property ;
 	rdfs:domain mbo:Work;
 	rdfs:range xsd:string;
-	rdfs:label "Copyright Collective Number"@en .
-
+	rdfs:label "Copyright Collective Number"@en ;
+	rdfs:comment "The number the responsible Copyright Collective Society (i.e. GEMA for Germany) assigned to the work" .
 
 mbo:iswcNumber a rdf:Property ;
 	rdfs:domain mbo:Work;
@@ -293,12 +293,12 @@ mbo:digital a mbo:Medium;
 	rdfs:label "digital"@en .
 
 mbo:mixedBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Recording;
 	rdfs:range mbo:Author;
 	rdfs:label "Mixed by"@en .
 
 mbo:masteredBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Recording;
 	rdfs:range mbo:Author;
 	rdfs:label "Mastered by"@en .
 
@@ -313,20 +313,20 @@ mbo:photosBy a rdf:Property;
 	rdfs:label "Photos by"@en .
 
 mbo:textedBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Work;
 	rdfs:range mbo:Author;
 	rdfs:label "Texted by"@en .
 
 mbo:ExecutiveProducer rdfs:subClassOf mbo:Producer;
-	rdfs:domain mbo:Release, mbo:Track;
+	rdfs:domain mbo:Release, mbo:Recording;
 	rdfs:range mbo:Author;
 	rdfs:label "Executive Producer"@en .
 
 mbo:Producer rdfs:subClassOf mbo:Author;
     rdfs:label "Producer"@en .
 
-mbo:producedBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Track;
+mbo:MusicProducer a rdf:Property;
+	rdfs:domain mbo:Release, mbo:Recording;
 	rdfs:range mbo:Producer;
 	rdfs:label "Produced by"@en .
 
@@ -339,11 +339,6 @@ mbo:sequencedBy a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range mbo:Author;
 	rdfs:label "Sequenced by"@en .
-
-mbo:description a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Track;
-	rdfs:range xsd:string;
-	rdfs:label "Description"@en .
 
 mbo:associatedLabel a rdf:Property;
 	rdfs:domain mbo:Release;
@@ -473,21 +468,15 @@ mbo:remixer a rdf:Property;
 	rdfs:range mbo:Author;
 	rdfs:label "Remixer"@en .
 
-mbo:graphicLyrics a rdf:Property;
-	rdfs:domain mbo:Recording;
+mbo:explicitLyrics a rdf:Property;
+	rdfs:domain mbo:Work;
 	rdfs:range xsd:boolean;
-	rdfs:label "Graphic Lyrics"@en .
+	rdfs:label "Explicit Lyrics"@en .
 
 mbo:creditArtist a rdf:Property;
 	rdfs:domain mbo:Recording;
 	rdfs:range mbo:Author;
 	rdfs:label "Credit Artist"@en .
-
-# die Rolle eines Tracks? Probably this must be removed
-mbo:role a rdf:Property;
-	rdfs:domain mbo:Track;
-	rdfs:range xsd:string;
-	rdfs:label "Role"@en .
 
 mbo:RecordingContract rdfs:subClassOf mbo:Contract;
 	rdfs:label "Recording Contract"@en .
@@ -714,3 +703,52 @@ mbo:Tag a rdf:Property;
 	rdfs:label "Tag"@en ;
 	rdfs:comment "A describing tag of the entity"@en .
 
+mbo:CreationInvolvement a owl:class;
+	rdfs:label "Creation Involvement"@en ;
+	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a musical work."@en .
+
+mbo:hasContribution a rdf:Property;
+	rdfs:domain mbo:Work;
+	rdfs:range mbo:CreationInvolvement;
+	rdfs:label "has contribution"@en ;
+	rdfs:comment "represents an involvement in the creation of a musical work."@en .
+
+mbo:hasAuthor a rdf:Property;
+	rdfs:domain mbo:CreationInvolvement;
+	rdfs:range foaf:Agent;
+	rdfs:label "has Author"@en ;
+	rdfs:comment "the artist or publisher that is involved in the creation of a musical work."@en .
+
+mbo:typeOfInvolvement a rdf:Property;
+	rdfs:domain mbo:CreationInvolvement;
+	rdfs:range xsd:string;
+	rdfs:label "type of involvement"@en ;
+	rdfs:comment "the type of the involvement in the creation of a musical work."@en .
+
+mbo:splitFromPerformance a rdf:Property;
+	rdfs:domain mbo:CreationInvolvement;
+	rdfs:range xsd:float;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "split from performance"@en ;
+	rdfs:comment "the split the author gets from performance royalties."@en .
+
+mbo:splitFromReplication a rdf:Property;
+	rdfs:domain mbo:CreationInvolvement;
+	rdfs:range xsd:float;
+	xsd:minInclusive 0;
+	xsd:maxInclusive 100;
+	rdfs:label "split from replication"@en ;
+	rdfs:comment "the split the author gets from replication royalties."@en .
+
+mbo:RoyaltyStatement a owl:Class;
+	rdfs:label "Royalty Statement"@en ;
+	rdfs:comment "a single royalty statement about the revenue of a creative artefact."@en .
+	
+mbo:hasRoyaltyStatement a rdf:Property;
+	rdfs:domain mbo:Release,
+		mbo:Recording,
+		mbo:Work;
+	rdfs:range mbo:RoyaltyStatement;
+	rdfs:label "has royalty statement"@en ;
+	rdfs:comment "links a creative artefact to a royalty statement."@en .
