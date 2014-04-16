@@ -424,7 +424,7 @@ mbo:isrcCode a rdf:Property;
 	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:maxLength 12;
-	rdfs:label "ISRC Code"@en .
+	rdfs:label "ISRC Code"@en ;
 	rdfs:comment "The International Standard Recording Code of the recording."@en .
 
 mbo:instrumentation a rdf:Property;
@@ -582,7 +582,7 @@ mbo:containsTrack a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range mbo:Track;
 	rdfs:label "Contains Track"@en ;
-	rdfs:comment "Links a Track to the containing release."@en ;
+	rdfs:comment "Links a Track to the containing release."@en .
 
 mbo:trackNumber a rdf:Property;
 	rdfs:domain mbo:Track;
@@ -617,7 +617,6 @@ mbo:annotation a rdf:Property;
 	rdfs:label "Annotation"@en ;
 	rdfs:comment "A descriptive text about the element"@en ;
 	owl:sameAs rdfs:comment .
-
 
 mbo:IPI a rdf:Property;
 	rdfs:domain mbo:Artist;
