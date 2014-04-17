@@ -208,10 +208,11 @@ mbo:Release rdfs:subClassOf mo:Album;
 	rdfs:label "Release"@en ;
 	rdfs:comment "A publication of musical works, usually consists of one or more songs"@en .
 
-mbo:albumTrack a rdf:Property;
+mbo:containsTrack a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range mbo:Track;
-	rdfs:label "Track on this Album"@en .
+	rdfs:label "Contains track"@en ;
+	rdfs:comment "links a release with the tracks it contains."@en .
 
 mbo:madeBy rdfs:subPropertyOf dc:creator;
 	rdfs:domain mbo:Release;
@@ -752,3 +753,77 @@ mbo:hasRoyaltyStatement a rdf:Property;
 	rdfs:range mbo:RoyaltyStatement;
 	rdfs:label "has royalty statement"@en ;
 	rdfs:comment "links a creative artefact to a royalty statement."@en .
+
+mbo:RoyalityStatementType a owl:class;
+	rdfs:label "Royality statement type"@en ;
+	rdfs:comment "the type of a royality statement. i.e physical or digital, download or stream."@en .
+
+mbo:PhysicalRelease a mbo:RoyalityStatementType;
+	rdfs:label "Physical release"@en ;
+	rdfs:comment "The type 'physical release' resembles physical objects like CD or Vinyl"@en .
+
+mbo:DigitalRelease a mbo:RoyalityStatementType;
+	rdfs:label "Digital release"@en ;
+	rdfs:comment "The type 'digital release' resembles digital releases, but not single recordings"@en .
+
+mbo:DigitalRecordingDownload a mbo:RoyalityStatementType;
+	rdfs:label "Digital recording download"@en ;
+	rdfs:comment "The type 'digital recording download' resembles single downloaded recordings."@en .
+
+mbo:DigitalRecordingStream a mbo:RoyalityStatementType;
+	rdfs:label "Digital recording stream"@en ;
+	rdfs:comment "The type 'digital recording stream' resembles single streamed recordings."@en .
+
+mbo:hasRoyaltyStatementType a rdf:Property;
+	rdfs:domain mbo:RoyalityStatement;
+	rdfs:range mbo:RoyalityStatementType;
+	rdfs:label "has royalty statement type"@en ;
+	rdfs:comment "links a royalty statement with its type."@en .
+
+mbo:hasSupplierId a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:string;
+	rdfs:label "has supplier id"@en ;
+	rdfs:comment "the id of the supplier of the release or recording. Usually the internal catalog number or isrc code."@en .
+
+mbo:RoyaltyStatementForArtist a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range mbo:Artist;
+	rdfs:label "royalty statement for artist"@en ;
+	rdfs:comment "links the royalty statement to the artist."@en .
+
+mbo:RoyaltyStatementTitle a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:string;
+	rdfs:label "Royalty statement title"@en ;
+	rdfs:comment "The title of the royalty statement. Should correspond with the name of the sold release or recording."@en .
+
+mbo:RoyalityStatementFromCountry a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:string;
+	rdfs:label "Royality statement from country"@en ;
+	rdfs:comment "Represents the country, where the statement is from. Use country codes from ISO 3166-2."@en .
+
+mbo:netSalesNumber a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:integer;
+	rdfs:label "Net sales number"@en ;
+	rdfs:comment "The number of sold copies. Might be negativ for a retoure."@en .
+
+mbo:netAmount a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:float;
+	rdfs:label "Net amount"@en ;
+	rdfs:comment "The amount of collected or retoured money of the statement."@en .
+
+mbo:netAmountCurrency a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:string;
+	rdfs:label "Net amount currency"@en ;
+	rdfs:comment "The currency of the money of the statement."@en .
+
+mbo:sellingOrganisation a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range foaf:Organization;
+	rdfs:label "Selling Organization"@en ;
+	rdfs:comment "The organisation (i.e. store, webshop) that sold the product."@en .
