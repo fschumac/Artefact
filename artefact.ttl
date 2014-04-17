@@ -224,7 +224,7 @@ mbo:catalogueNumber a rdf:Property;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
-mbo:upcBarcode a owl:class;
+mbo:upcBarcode a owl:Class;
 	rdfs:label "UPC Barcode"@en ;
 	rdfs:comment "A barcode to identify a sellable good"@en .
 
@@ -704,7 +704,7 @@ mbo:Tag a rdf:Property;
 	rdfs:label "Tag"@en ;
 	rdfs:comment "A describing tag of the entity"@en .
 
-mbo:CreationInvolvement a owl:class;
+mbo:CreationInvolvement a owl:Class;
 	rdfs:label "Creation Involvement"@en ;
 	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a musical work."@en .
 
@@ -754,29 +754,29 @@ mbo:hasRoyaltyStatement a rdf:Property;
 	rdfs:label "has royalty statement"@en ;
 	rdfs:comment "links a creative artefact to a royalty statement."@en .
 
-mbo:RoyalityStatementType a owl:class;
-	rdfs:label "Royality statement type"@en ;
-	rdfs:comment "the type of a royality statement. i.e physical or digital, download or stream."@en .
+mbo:RoyaltyStatementType a owl:Class;
+	rdfs:label "Royalty statement type"@en ;
+	rdfs:comment "the type of a royalty statement. i.e physical or digital, download or stream."@en .
 
-mbo:PhysicalRelease a mbo:RoyalityStatementType;
+mbo:PhysicalRelease a mbo:RoyaltyStatementType;
 	rdfs:label "Physical release"@en ;
 	rdfs:comment "The type 'physical release' resembles physical objects like CD or Vinyl"@en .
 
-mbo:DigitalRelease a mbo:RoyalityStatementType;
+mbo:DigitalRelease a mbo:RoyaltyStatementType;
 	rdfs:label "Digital release"@en ;
 	rdfs:comment "The type 'digital release' resembles digital releases, but not single recordings"@en .
 
-mbo:DigitalRecordingDownload a mbo:RoyalityStatementType;
+mbo:DigitalRecordingDownload a mbo:RoyaltyStatementType;
 	rdfs:label "Digital recording download"@en ;
 	rdfs:comment "The type 'digital recording download' resembles single downloaded recordings."@en .
 
-mbo:DigitalRecordingStream a mbo:RoyalityStatementType;
+mbo:DigitalRecordingStream a mbo:RoyaltyStatementType;
 	rdfs:label "Digital recording stream"@en ;
 	rdfs:comment "The type 'digital recording stream' resembles single streamed recordings."@en .
 
 mbo:hasRoyaltyStatementType a rdf:Property;
-	rdfs:domain mbo:RoyalityStatement;
-	rdfs:range mbo:RoyalityStatementType;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range mbo:RoyaltyStatementType;
 	rdfs:label "has royalty statement type"@en ;
 	rdfs:comment "links a royalty statement with its type."@en .
 
