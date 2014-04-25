@@ -181,8 +181,10 @@ mbo:title a rdf:Property;
 	owl:sameAs rdfs:label.
 
 mbo:length a rdf:Property;
-	rdfs:range xsd:integer;
-	rdfs:label "Length"@en .
+	rdfs:domain mbo:Recording;
+	rdfs:range xsd:duration;
+	rdfs:label "Length"@en ;
+	rdfs:comment "The lenght of a recording."@en .
 
 mbo:composedBy rdfs:subPropertyOf dc:creator;
 	rdfs:domain mbo:Work;
@@ -326,7 +328,7 @@ mbo:ExecutiveProducer rdfs:subClassOf mbo:Producer;
 mbo:Producer rdfs:subClassOf mbo:Author;
     rdfs:label "Producer"@en .
 
-mbo:MusicProducer a rdf:Property;
+mbo:producedBy a rdf:Property;
 	rdfs:domain mbo:Release, mbo:Recording;
 	rdfs:range mbo:Producer;
 	rdfs:label "Produced by"@en .
@@ -425,13 +427,8 @@ mbo:isrcCode a rdf:Property;
 
 mbo:instrumentation a rdf:Property;
 	rdfs:domain mbo:Recording;
-	rdfs:range rdf:List;
-	rdfs:label "Instrumentation"@en .
-
-mbo:style a rdf:Property;
-	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
-	rdfs:label "Style"@en .
+	rdfs:label "Instrumentation"@en .
 
 mbo:vocals a rdf:Property;
 	rdfs:domain mbo:Recording;
@@ -444,7 +441,8 @@ mbo:vocals a rdf:Property;
 mbo:mood a rdf:Property;
 	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
-	rdfs:label "Moods"@en .
+	rdfs:label "Mood"@en ;
+	rdfs:comment "A mood that is expressed by the recording."@en .
 
 # liveRecording als Klasse (Sub-Recording) modellieren?
 mbo:liveRecording a rdf:Property;
@@ -827,3 +825,82 @@ mbo:sellingOrganisation a rdf:Property;
 	rdfs:range foaf:Organization;
 	rdfs:label "Selling Organization"@en ;
 	rdfs:comment "The organisation (i.e. store, webshop) that sold the product."@en .
+
+mbo:quote a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Quote"@en ;
+	rdfs:comment "A meaningful quote about or from the artist."@en .
+
+mbo:biography a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Biography"@en ;
+	rdfs:comment "The biography of an artist."@en .
+
+mbo:shortInfo a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range xsd:string;
+	rdfs:label "Short info"@en ;
+	rdfs:comment "A short, descriptive information about the artist"@en .
+
+mbo:musicStyle a owl:Class;
+	rdfs:label "Music style"@en ;
+	rdfs:comment "Describes the style of music by nation, ethnos, language or religion. Examples are 'African music', 'Balcan music' or 'Latinamerican music'."@en .
+
+mbo:hasMusicStyle a rdf:Property;
+	rdfs:domain mbo:Artist, mbo:Recording, mbo:Release;
+	rdfs:range mbo:musicStyle;
+	rdfs:label "has music style"@en ;
+	rdfs:comment "links an artist with a corresponding music style."@en .
+
+mbo:Genre a owl:Class;
+	rdfs:label "Genre"@en ;
+	rdfs:comment "Describes the genre of music, like 'Rock', 'Heavy Metal'. Includes Subgenres as well like 'Symphonic Metal'"@en .
+
+mbo:hasGenre a rdf:Property;
+	rdfs:domain mbo:Release, mbo:Recording;
+	rdfs:Range mbo:Genre;
+	rdfs:label "has genre"@en ;
+	rdfs:comment "links a recording or release to a musical genre."@en .
+
+mbo:hasSubGenre a rdf:Property;
+	rdfs:domain mbo:Genre;
+	rdfs:range mbo:Genre;
+	rdfs:label "has sub genre"@en ;
+	rdfs:comment "links a genre with its subgenre"@en .
+
+mbo:Region a owl:Class;
+	rdfs:label "Region"@en ;
+	rdfs:comment "A region of the world. Might be a continent, a country, a state or a city"@en .
+
+mbo:isInRegion a rdf:Property;
+	rdfs:domain mbo:Region;
+	rdfs:range mbo:Region;
+	rdfs:label "is in region"@en ;
+	rdfs:comment "a region that is contained in another region, i.e. Paris is in France."@en .
+
+mbo:comesFromRegion a rdf:Property;
+	rdfs:domain mbo:Artist, mbo:Recording, mbo:Release;
+	rdfs:range mbo:Region;
+	rdfs:label "comes from region"@en ;
+	rdfs:comment "the region the artist or recording comes from."@en .
+
+mbo:catchWord a rdf:Property;
+	rdfs:domain mbo:Recording;
+	rdfs:range xsd:string;
+	rdfs:label "Catch word"@en ;
+	rdfs:comment "A single word or phrase to describe an aspect of the recording."@en .
+
+mbo:tempo a rdf:Property;
+	rdfs:domain mbo:Recording;
+	rdfs:range xsd:string;
+	rdfs:label "tempo"@en ;
+	rdfs:comment "the (perceived) tempo of a recording, i.e. slow, mid-tempo, change of tempo, impelling"@en .
+
+mbo:landOfProduction a rdf:Property;
+	rdfs:domain mbo:Recording;
+	rdfs:range mbo:Region;
+	rdfs:label "Land of production"@en ;
+	rdfs:comment "The land the recording was produced in."@en .
+
