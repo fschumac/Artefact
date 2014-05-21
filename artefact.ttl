@@ -626,13 +626,13 @@ mbo:gender a rdf:Property;
 
 mbo:beginArea a rdf:Property;
 	rdfs:domain mbo:Artist;
-	rdfs:range lgdo:Place;
+	rdfs:range db:PopulatedPlace;
 	rdfs:label "Begin Area"@en ;
 	rdfs:comment "The area (city, country) where the artist started its activity"@en .
 
 mbo:area a rdf:Property;
 	rdfs:domain mbo:Artist;
-	rdfs:range lgdo:Place;
+	rdfs:range db:PopulatedPlace;
 	rdfs:label "Area"@en ;
 	rdfs:comment "The area (city, country) where the artist is/was activ"@en .
 
@@ -871,6 +871,7 @@ mbo:hasSubGenre a rdf:Property;
 	rdfs:comment "links a genre with its subgenre"@en .
 
 mbo:Region a owl:Class;
+	owl:sameAs db:PopulatedPlace;
 	rdfs:label "Region"@en ;
 	rdfs:comment "A region of the world. Might be a continent, a country, a state or a city"@en .
 
