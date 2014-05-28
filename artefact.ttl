@@ -578,7 +578,7 @@ mbo:trackNumber a rdf:Property;
 	rdfs:label "Track Number"@en ;
 	rdfs:comment "The position of the track on the release."@en .
 
-mbo:MusicBrainzId a rdf:Property;
+mbo:musicBrainzId a rdf:Property;
 	rdfs:domain mbo:Artist,
 		mbo:ReleaseGroup,
 		mbo:Release,
@@ -684,7 +684,7 @@ mbo:containsRelease a rdf:Property;
 	rdfs:label "contains Release"@en ;
 	rdfs:comment "a specific release of a release group"@en .
 
-mbo:ReleaseGroupType a rdf:Property;
+mbo:releaseGroupType a rdf:Property;
 	rdfs:domain mbo:ReleaseGroup;
 	rdfs:range xsd:string;
 	rdfs:label "Release Group Type"@en ;
@@ -697,7 +697,8 @@ mbo:firstReleaseDate a rdf:Property;
 	rdfs:comment "The date when a release of the release group was published the first time"@en .
 
 mbo:Tag a rdf:Property;
-	rdfs:domain mbo:ReleaseGroup;
+	rdfs:domain mbo:ReleaseGroup,
+		mbo:Artist;
 	rdfs:range xsd:string;
 	rdfs:label "Tag"@en ;
 	rdfs:comment "A describing tag of the entity"@en .
