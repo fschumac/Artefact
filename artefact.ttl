@@ -5,10 +5,8 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix mo: <http://purl.org/ontology/mo/> .
-@prefix sc: <http://schema.org/> .
 @prefix db: <http://dbpedia.org/ontology/> .
 @prefix dc: <http://purl.org/dc/terms/> .
-@prefix lgdo: <http://linkedgeodata.org/ontology/> .
 
 @prefix mbo: <http://creativeartefact.org/ontology/> .
 
@@ -226,32 +224,15 @@ mbo:catalogueNumber a rdf:Property;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
-mbo:upcBarcode a owl:Class;
-	rdfs:label "UPC Barcode"@en ;
-	rdfs:comment "A barcode to identify a sellable good"@en .
+mbo:asin a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range xsd:string;
+	rdfs:label "Amazon Standard Identification Number (ASIN)"@en .
 
-mbo:hasBarcode a rdf:Property;
+mbo:barcode a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:integer;
 	rdfs:label "UPC Barcode"@en .
-
-mbo:upcBarcodeOwner a rdf:Property;
-	rdfs:domain mbo:upcBarcode;
-	rdfs:range xsd:integer;
-	xsd:totalDigits 6;
-	rdfs:label "Bar code owner"@en .
-
-mbo:upcBarcodeFreeNumber a rdf:Property;
-	rdfs:domain mbo:upcBarcode;
-	rdfs:range xsd:integer;
-	xsd:totalDigits 5;
-	rdfs:label "Free number"@en .
-
-mbo:upcBarcodeCheckDigit a rdf:Property;
-	rdfs:domain mbo:upcBarcode;
-	rdfs:range xsd:integer;
-	xsd:totalDigits 1;
-	rdfs:label "Check Digit"@en .
 
 mbo:releaseDate a rdf:Property;
 	rdfs:domain mbo:Release;
@@ -268,14 +249,9 @@ mbo:streamingPlayer a rdf:Property;
 	rdfs:range foaf:homepage;
 	rdfs:label "Streaming player"@en .
 
-mbo:associatedGenre a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range xsd:string;
-	rdfs:label "Associated Genre"@en .
-
 mbo:producedIn a rdf:Property;
 	rdfs:domain mbo:Release;
-	rdfs:range sc:Place;
+	rdfs:range db:PopulatedPlace;
 	rdfs:label "Produced in"@en .
 
 mbo:releaseFormat a owl:DatatypeProperty;
@@ -292,7 +268,7 @@ mbo:LP a mbo:Medium;
 mbo:CD a mbo:Medium;
 	rdfs:label "CD"@en .
 
-mbo:digital a mbo:Medium;
+mbo:Digital a mbo:Medium;
 	rdfs:label "digital"@en .
 
 mbo:mixedBy a rdf:Property;
@@ -385,13 +361,13 @@ mbo:packaging a rdf:Property;
 	rdfs:label "Packing"@en ;
 	rdfs:comment "The packaging used for the release. Possible values are 'Jewel Case', 'Slim Jewel Case', 'Digipak', 'Cardboard/Paper Sleeve', 'Keep Case', 'None', 'Cassette Case', 'Book', 'Fatbox', 'Snap Case', 'Gatefold Cover' or 'Discbox Slider'"@en . 
 
-mbo:LanguageOfTracklist a rdf:Property;
+mbo:languageOfTracklist a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range dc:ISO639-3;
 	rdfs:label "Language of tracklist"@en ;
 	rdfs:comment "The language the tracklist is written in. Possible values taken from ISO 639-3."@en .
 
-mbo:ScriptOfTracklist a rdf:Property;
+mbo:scriptOfTracklist a rdf:Property;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Script of tracklist"@en ;
