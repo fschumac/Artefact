@@ -582,13 +582,13 @@ mbo:annotation a rdf:Property;
 	rdfs:comment "A descriptive text about the element"@en ;
 	owl:sameAs rdfs:comment .
 
-mbo:IPI a rdf:Property;
+mbo:ipi a rdf:Property;
 	rdfs:domain mbo:Artist;
 	rdfs:range xsd:string;
 	rdfs:label "Interested Parties Information Code (IPI)"@en ;
 	rdfs:comment "The Interested Parties Information Code (IPI) is an identifying number assigned in the CISAC database to each Interested Party in musical rights management."@en .
 
-mbo:ISNI a rdf:Property;
+mbo:isni a rdf:Property;
 	rdfs:domain mbo:Artist;
 	rdfs:range xsd:string;
 	rdfs:label "International Standard Name Identifier (ISNI)"@en ;
@@ -613,16 +613,18 @@ mbo:area a rdf:Property;
 	rdfs:comment "The area (city, country) where the artist is/was activ"@en .
 
 mbo:begin a rdf:Property;
-	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:Artist,
+		mbo:RoyaltyStatement;
 	rdfs:range xsd:date;
 	rdfs:label "Begin"@en ;
-	rdfs:comment "The date of the begin of the artists activity"@en .
+	rdfs:comment "The date of the begin of an activity"@en .
 	
 mbo:end a rdf:Property;
-	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:Artist,
+		mbo:RoyaltyStatement;
 	rdfs:range xsd:date;
 	rdfs:label "End"@en ;
-	rdfs:comment "The date of the end of the artists activity"@en .
+	rdfs:comment "The date of the end of an activity"@en .
 	
 mbo:alias a rdf:Property;
 	rdfs:domain mbo:Artist;
@@ -672,7 +674,7 @@ mbo:firstReleaseDate a rdf:Property;
 	rdfs:label "First Release Date"@en ;
 	rdfs:comment "The date when a release of the release group was published the first time"@en .
 
-mbo:Tag a rdf:Property;
+mbo:tag a rdf:Property;
 	rdfs:domain mbo:ReleaseGroup,
 		mbo:Artist;
 	rdfs:range xsd:string;
@@ -761,19 +763,19 @@ mbo:hasSupplierId a rdf:Property;
 	rdfs:label "has supplier id"@en ;
 	rdfs:comment "the id of the supplier of the release or recording. Usually the internal catalog number or isrc code."@en .
 
-mbo:RoyaltyStatementForArtist a rdf:Property;
+mbo:royaltyStatementForArtist a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range mbo:Artist;
 	rdfs:label "royalty statement for artist"@en ;
 	rdfs:comment "links the royalty statement to the artist."@en .
 
-mbo:RoyaltyStatementTitle a rdf:Property;
+mbo:royaltyStatementTitle a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range xsd:string;
 	rdfs:label "Royalty statement title"@en ;
 	rdfs:comment "The title of the royalty statement. Should correspond with the name of the sold release or recording."@en .
 
-mbo:RoyalityStatementFromCountry a rdf:Property;
+mbo:royalityStatementFromCountry a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range xsd:string;
 	rdfs:label "Royality statement from country"@en ;
@@ -793,9 +795,15 @@ mbo:netAmount a rdf:Property;
 
 mbo:netAmountCurrency a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
-	rdfs:range xsd:string;
+	rdfs:range db:ISO_4217;
 	rdfs:label "Net amount currency"@en ;
 	rdfs:comment "The currency of the money of the statement."@en .
+
+mbo:promotionCode a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:string;
+	rdfs:label "Promotion code"@en ;
+	rdfs:comment "A promotional code that was reported from the selling party."@en .
 
 mbo:sellingOrganisation a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
