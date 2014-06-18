@@ -401,6 +401,13 @@ mbo:isrcCode a rdf:Property;
 	rdfs:label "ISRC Code"@en ;
 	rdfs:comment "The International Standard Recording Code of the recording."@en .
 
+mbo:appleIdentifier a rdf:Property;
+	rdfs:domain mbo:Recording,
+		mbo:Release;
+	rdfs:range xsd:string;
+	rdfs:label "Apple identifier"@en ;
+	rdfs:comment "The identifier, apple uses for a recording or release"@en .
+
 mbo:instrumentation a rdf:Property;
 	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
@@ -614,14 +621,16 @@ mbo:area a rdf:Property;
 
 mbo:begin a rdf:Property;
 	rdfs:domain mbo:Artist,
-		mbo:RoyaltyStatement;
+		mbo:RoyaltyStatement,
+		mbo:MusicLicence;
 	rdfs:range xsd:date;
 	rdfs:label "Begin"@en ;
 	rdfs:comment "The date of the begin of an activity"@en .
 	
 mbo:end a rdf:Property;
 	rdfs:domain mbo:Artist,
-		mbo:RoyaltyStatement;
+		mbo:RoyaltyStatement,
+		mbo:MusicLicence;
 	rdfs:range xsd:date;
 	rdfs:label "End"@en ;
 	rdfs:comment "The date of the end of an activity"@en .
@@ -890,3 +899,22 @@ mbo:landOfProduction a rdf:Property;
 	rdfs:label "Land of production"@en ;
 	rdfs:comment "The land the recording was produced in."@en .
 
+mbo:MusicLicence a owl:Class;
+	rdfs:label "Music Licence"@en ;
+	rdfs:comment "A licence to administrate the commercialisation of a musical work (work or recording)"@en .
+
+mbo:holdRight a rdf:Property;
+	rdfs:domain mbo:Label,
+		mbo:Publisher;
+	rdfs:range mbo:MusicLicence;
+	rdfs:label "Hold right"@en ;
+	rdfs:comment "A music company (label or publisher) holds the right on a certain musical work or recording"@en .
+
+mbo:rightOnMusicalItem a rdf:Property;
+	rdfs:domain mbo:MusicLicence;
+	rdfs:range mbo:Work,
+		mbo:Recording,
+		mbo:Release,
+		mbo:ReleaseGroup;
+	rdfs:label "Right on musical item"@en ;
+	rdfs:comment "Refers to the musical item (work, recording, release/group) that the MusicLicence is about"@en ;
