@@ -220,7 +220,8 @@ mbo:madeBy rdfs:subPropertyOf dc:creator;
 	rdfs:label "Maker"@en .
 
 mbo:catalogueNumber a rdf:Property;
-	rdfs:domain mbo:Release;
+	rdfs:domain mbo:Release,
+		mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
@@ -778,6 +779,13 @@ mbo:royaltyStatementForArtist a rdf:Property;
 	rdfs:label "royalty statement for artist"@en ;
 	rdfs:comment "links the royalty statement to the artist."@en .
 
+mbo:royaltyStatementForProduct a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range mbo:Recording,
+		mbo:Release;
+	rdfs:label "royalty statement for artist"@en ;
+	rdfs:comment "links the royalty statement to the artist."@en .
+
 mbo:royaltyStatementTitle a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range xsd:string;
@@ -814,9 +822,13 @@ mbo:promotionCode a rdf:Property;
 	rdfs:label "Promotion code"@en ;
 	rdfs:comment "A promotional code that was reported from the selling party."@en .
 
+mbo:Distributor rdfs:subClassOf foaf:Organization;
+	rdfs:label "Distributor"@en ;
+	rdfs:comment "A company, that distributes musical products."@en .
+
 mbo:sellingOrganisation a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
-	rdfs:range foaf:Organization;
+	rdfs:range mbo:Distributor;
 	rdfs:label "Selling Organization"@en ;
 	rdfs:comment "The organisation (i.e. store, webshop) that sold the product."@en .
 
@@ -917,4 +929,4 @@ mbo:rightOnMusicalItem a rdf:Property;
 		mbo:Release,
 		mbo:ReleaseGroup;
 	rdfs:label "Right on musical item"@en ;
-	rdfs:comment "Refers to the musical item (work, recording, release/group) that the MusicLicence is about"@en ;
+	rdfs:comment "Refers to the musical item (work, recording, release/group) that the MusicLicence is about"@en .
