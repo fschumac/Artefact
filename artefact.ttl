@@ -777,8 +777,8 @@ mbo:royaltyStatementForProduct a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range mbo:Recording,
 		mbo:Release;
-	rdfs:label "royalty statement for artist"@en ;
-	rdfs:comment "links the royalty statement to the artist."@en .
+	rdfs:label "royalty statement for recording or release"@en ;
+	rdfs:comment "links the royalty statement to the recording or the release."@en .
 
 mbo:royaltyStatementTitle a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
