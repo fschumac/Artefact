@@ -20,7 +20,7 @@ mbo:Label a owl:Class;
 	rdfs:label "Record Label"@en .
 
 mbo:labelCode a rdf:Property;
-	rdfs:domain mbo:Label;	
+	rdfs:domain mbo:Label;
 	rdfs:range xsd:integer;
 	rdfs:label "Label Code"@en .
 
@@ -611,7 +611,8 @@ mbo:area a rdf:Property;
 mbo:begin a rdf:Property;
 	rdfs:domain mbo:Artist,
 		mbo:RoyaltyStatement,
-		mbo:MusicLicence;
+		mbo:MusicLicence,
+		mbo:LiveMusicEvent;
 	rdfs:range xsd:date;
 	rdfs:label "Begin"@en ;
 	rdfs:comment "The date of the begin of an activity"@en .
@@ -619,7 +620,8 @@ mbo:begin a rdf:Property;
 mbo:end a rdf:Property;
 	rdfs:domain mbo:Artist,
 		mbo:RoyaltyStatement,
-		mbo:MusicLicence;
+		mbo:MusicLicence,
+		mbo:LiveMusicEvent;
 	rdfs:range xsd:date;
 	rdfs:label "End"@en ;
 	rdfs:comment "The date of the end of an activity"@en .
@@ -728,7 +730,8 @@ mbo:RoyaltyStatement a owl:Class;
 	rdfs:comment "a single royalty statement about the revenue of a creative artefact."@en .
 	
 mbo:hasRoyaltyStatement a rdf:Property;
-	rdfs:domain mbo:Release,
+	rdfs:domain mbo:Artist,
+		mbo:Release,
 		mbo:Recording,
 		mbo:Work;
 	rdfs:range mbo:RoyaltyStatement;
@@ -924,3 +927,88 @@ mbo:rightOnMusicalItem a rdf:Property;
 		mbo:ReleaseGroup;
 	rdfs:label "Right on musical item"@en ;
 	rdfs:comment "Refers to the musical item (work, recording, release/group) that the MusicLicence is about"@en .
+	
+mbo:Venue a owl:Class;
+	rdfs:subClassOf foaf:Organization;
+	rdfs:label "Venue"@en ;
+	rdfs:comment "A venue where musical performances take place"@en .
+
+mbo:Organiser a owl:Class;
+	rdfs:subClassOf foaf:Person;
+	rdfs:label "Organiser"@en ;
+	rdfs:comment "A person that organises livemusic events"@en .
+
+mbo:city a rdf:Property;
+	rdfs:domain mbo:Venue,
+		mbo:Organiser;
+	rdfs:range db:City;
+	rdfs:label "City"@en ;
+	rdfs:comment "The city a venue or organiser is located"@en .
+
+mbo:street a rdf:Property;
+	rdfs:domain mbo:Venue,
+		mbo:Organiser;
+	rdfs:range xsd:string;
+	rdfs:label "Street"@en ;
+	rdfs:comment "The street with number a venue or organiser is located"@en .
+
+mbo:postalcode a rdf:Property;
+	rdfs:domain mbo:Venue,
+		mbo:Organiser;
+	rdfs:range xsd:string;
+	rdfs:label "Postalcode"@en ;
+	rdfs:comment "The postalcode of a venue or organiser"@en .
+
+mbo:LiveMusicEvent a owl:Class;
+	rdfs:label "Live music event"@en ;
+	rdfs:comment "An event, where one or more artists are performing music"@en .
+
+mbo:LivePerformance a owl:Class;
+	rdfs:label "Live performance"@en ;
+	rdfs:comment "The performance of an artist at a live music event"@en .
+
+mbo:eventPerformance a rdf:Property;
+	rdfs:domain mbo:LiveMusicEvent;
+	rdfs:range mbo:LivePerformance;
+	rdfs:label "Event Performance"@en ;
+	rdfs:comment "A performance of an artist at a live event"@en .
+	
+mbo:playsPerformance a rdf:Property;
+	rdfs:domain mbo:Artist;
+	rdfs:range mbo:LivePerformance;
+	rdfs:label "Plays performance"@en ;
+	rdfs:comment "An artist plays a live performance"@en .
+
+mbo:organisedBy a rdf:Property;
+	rdfs:domain mbo:LiveMusicEvent;
+	rdfs:range mbo:Organiser;
+	rdfs:label "Organised by"@en ;
+	rdfs:comment "A live performance' organiser"@en .
+
+mbo:takesPlaceAt a rdf:Property;
+	rdfs:domain mbo:LiveMusicEvent;
+	rdfs:range mbo:Venue;
+	rdfs:label "Takes place at"@en ;
+	rdfs:comment "The venue a live performance takes place at"@en .
+
+mbo:Setlist a owl:Class;
+	rdfs:label "Setlist"@en ;
+	rdfs:label "A list of songs that were played during a live performance"@en .
+
+mbo:containsWork a rdf:Property;
+	rdfs:domain mbo:Setlist;
+	rdfs:range mbo:Work;
+	rdfs:label "Contains Work"@en ;
+	rdfs:comment "A work contained in a setlist"@en .
+
+mbo:playedSetlist a rdf:Property;
+	rdfs:domain mbo:LivePerformance;
+	rdfs:range mbo:Setlist;
+	rdfs:label "Played setlist"@en ;
+	rdfs:comment "The setlist played at a live performance"@en .
+
+mbo:ccsCategory a rdf:Property;
+	rdfs:domain mbo:LivePerformance;
+	rdfs:range xsd:string;
+	rdfs:label "Copyright Collecting Society Category"@en ;
+	rdfs:comment "The Category the live performance has to be reported to the copyright collecting society"@en .
