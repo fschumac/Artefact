@@ -819,7 +819,8 @@ mbo:promotionCode a rdf:Property;
 	rdfs:label "Promotion code"@en ;
 	rdfs:comment "A promotional code that was reported from the selling party."@en .
 
-mbo:Distributor rdfs:subClassOf foaf:Organization;
+mbo:Distributor a owl:Class;
+	rdfs:subClassOf foaf:Organization;
 	rdfs:label "Distributor"@en ;
 	rdfs:comment "A company, that distributes musical products."@en .
 
@@ -993,7 +994,7 @@ mbo:takesPlaceAt a rdf:Property;
 
 mbo:Setlist a owl:Class;
 	rdfs:label "Setlist"@en ;
-	rdfs:label "A list of songs that were played during a live performance"@en .
+	rdfs:comment "A list of songs that were played during a live performance"@en .
 
 mbo:containsWork a rdf:Property;
 	rdfs:domain mbo:Setlist;
