@@ -770,18 +770,14 @@ mbo:hasSupplierId a rdf:Property;
 	rdfs:label "has supplier id"@en ;
 	rdfs:comment "the id of the supplier of the release or recording. Usually the internal catalog number or isrc code."@en .
 
-mbo:royaltyStatementForArtist a rdf:Property;
-	rdfs:domain mbo:RoyaltyStatement;
-	rdfs:range mbo:Artist;
-	rdfs:label "royalty statement for artist"@en ;
-	rdfs:comment "links the royalty statement to the artist."@en .
-
-mbo:royaltyStatementForProduct a rdf:Property;
+mbo:royaltyStatementFor a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range mbo:Recording,
-		mbo:Release;
-	rdfs:label "royalty statement for recording or release"@en ;
-	rdfs:comment "links the royalty statement to the recording or the release."@en .
+		mbo:Release,
+		mbo:Artist,
+		mbo:Label;
+	rdfs:label "royalty statement for artist"@en ;
+	rdfs:comment "links to the resource, the royalty statement is connected to."@en .
 
 mbo:royaltyStatementTitle a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
@@ -848,13 +844,13 @@ mbo:shortInfo a rdf:Property;
 	rdfs:label "Short info"@en ;
 	rdfs:comment "A short, descriptive information about the artist"@en .
 
-mbo:musicStyle a owl:Class;
+mbo:MusicStyle a owl:Class;
 	rdfs:label "Music style"@en ;
 	rdfs:comment "Describes the style of music by nation, ethnos, language or religion. Examples are 'African music', 'Balcan music' or 'Latinamerican music'."@en .
 
 mbo:hasMusicStyle a rdf:Property;
 	rdfs:domain mbo:Artist, mbo:Recording, mbo:Release;
-	rdfs:range mbo:musicStyle;
+	rdfs:range mbo:MusicStyle;
 	rdfs:label "has music style"@en ;
 	rdfs:comment "links an artist with a corresponding music style."@en .
 
@@ -864,7 +860,7 @@ mbo:Genre a owl:Class;
 
 mbo:hasGenre a rdf:Property;
 	rdfs:domain mbo:Release, mbo:Recording;
-	rdfs:Range mbo:Genre;
+	rdfs:range mbo:Genre;
 	rdfs:label "has genre"@en ;
 	rdfs:comment "links a recording or release to a musical genre."@en .
 
