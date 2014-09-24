@@ -420,7 +420,7 @@ mbo:liveRecording a rdf:Property;
 	rdfs:label "Live Recording"@en .
 
 # Recording als Klasse (Sub-Recording) modellieren?
-mbo:potpurri a rdf:Property;
+mbo:potpourri a rdf:Property;
 	rdfs:domain mbo:Recording;
 	rdfs:range xsd:boolean;
 	rdfs:label "Potpurri"@en .
@@ -537,12 +537,6 @@ mbo:contractedWork a rdf:Property;
 	rdfs:domain mbo:PublishingContract;
 	rdfs:range mbo:Work;
 	rdfs:label "Contracted Work"@en .
-
-mbo:containsTrack a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range mbo:Track;
-	rdfs:label "Contains Track"@en ;
-	rdfs:comment "Links a Track to the containing release."@en .
 
 mbo:trackNumber a rdf:Property;
 	rdfs:domain mbo:Track;
@@ -785,7 +779,7 @@ mbo:royaltyStatementTitle a rdf:Property;
 	rdfs:label "Royalty statement title"@en ;
 	rdfs:comment "The title of the royalty statement. Should correspond with the name of the sold release or recording."@en .
 
-mbo:royalityStatementFromCountry a rdf:Property;
+mbo:royaltyStatementFromCountry a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
 	rdfs:range xsd:string;
 	rdfs:label "Royality statement from country"@en ;
@@ -808,6 +802,18 @@ mbo:netAmountCurrency a rdf:Property;
 	rdfs:range db:ISO_4217;
 	rdfs:label "Net amount currency"@en ;
 	rdfs:comment "The currency of the money of the statement."@en .
+
+mbo:customerPrice a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range xsd:float;
+	rdfs:label "Customer price"@en ;
+	rdfs:comment "The price the customer payed for the product."@en .
+
+mbo:customerPriceCurrency a rdf:Property;
+	rdfs:domain mbo:RoyaltyStatement;
+	rdfs:range db:ISO_4217;
+	rdfs:label "Customer price currency"@en ;
+	rdfs:comment "The currency the customer payed the product."@en .
 
 mbo:promotionCode a rdf:Property;
 	rdfs:domain mbo:RoyaltyStatement;
