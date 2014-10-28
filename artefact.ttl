@@ -173,21 +173,6 @@ mbo:length a rdf:Property;
 	rdfs:label "Length"@en ;
 	rdfs:comment "The lenght of a recording."@en .
 
-mbo:composedBy rdfs:subPropertyOf dc:creator;
-	rdfs:domain mbo:Work;
-	rdfs:range mbo:ArtistPerson;
-	rdfs:label "Composed by"@en .
-
-mbo:lyricsBy a rdf:Property;
-	rdfs:domain mbo:Work;
-	rdfs:range mbo:Author;
-	rdfs:label "Lyrics by"@en .
-
-mbo:arrangedBy a rdf:Property;
-	rdfs:domain mbo:Work;
-	rdfs:range mbo:Author;
-	rdfs:label "Arranged by"@en .
-
 mbo:registratedFor a rdf:Property;
 	rdfs:domain mbo:Work;
 	rdfs:range mbo:Publisher;
@@ -262,31 +247,6 @@ mbo:CD a mbo:Medium;
 mbo:Digital a mbo:Medium;
 	rdfs:label "digital"@en .
 
-mbo:mixedBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Recording;
-	rdfs:range mbo:Author;
-	rdfs:label "Mixed by"@en .
-
-mbo:masteredBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Recording;
-	rdfs:range mbo:Author;
-	rdfs:label "Mastered by"@en .
-
-mbo:artworkDesignedBy a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range mbo:Author;
-	rdfs:label "Artwork designed by"@en .
-
-mbo:photosBy a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range mbo:Author;
-	rdfs:label "Photos by"@en .
-
-mbo:textedBy a rdf:Property;
-	rdfs:domain mbo:Release, mbo:Work;
-	rdfs:range mbo:Author;
-	rdfs:label "Texted by"@en .
-
 mbo:Producer a owl:Class;
 	rdfs:subClassOf mbo:Author;
 	rdfs:label "Producer"@en .
@@ -295,16 +255,6 @@ mbo:producedBy a rdf:Property;
 	rdfs:domain mbo:Release, mbo:Recording;
 	rdfs:range mbo:Producer;
 	rdfs:label "Produced by"@en .
-
-mbo:compiledBy a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range mbo:Author;
-	rdfs:label "Compiled by"@en .
-
-mbo:sequencedBy a rdf:Property;
-	rdfs:domain mbo:Release;
-	rdfs:range mbo:Author;
-	rdfs:label "Sequenced by"@en .
 
 mbo:associatedLabel a rdf:Property;
 	rdfs:domain mbo:Release;
@@ -430,11 +380,6 @@ mbo:version a rdf:Property;
 	rdfs:range "remix";
 	rdfs:range "radio edit";
 	rdfs:label "Version"@en .
-
-mbo:remixer a rdf:Property;
-	rdfs:domain mbo:Recording;
-	rdfs:range mbo:Author;
-	rdfs:label "Remixer"@en .
 
 mbo:explicitLyrics a rdf:Property;
 	rdfs:domain mbo:Work;
@@ -681,30 +626,34 @@ mbo:tag a rdf:Property;
 	rdfs:label "Tag"@en ;
 	rdfs:comment "A describing tag of the entity"@en .
 
-mbo:CreationInvolvement a owl:Class;
+mbo:WorkCreationInvolvement a owl:Class;
 	rdfs:label "Creation Involvement"@en ;
 	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a musical work."@en .
 
 mbo:hasContribution a rdf:Property;
 	rdfs:domain mbo:Work;
-	rdfs:range mbo:CreationInvolvement;
+	rdfs:range mbo:WorkCreationInvolvement;
 	rdfs:label "has contribution"@en ;
 	rdfs:comment "represents an involvement in the creation of a musical work."@en .
 
 mbo:hasAuthor a rdf:Property;
-	rdfs:domain mbo:CreationInvolvement;
+	rdfs:domain mbo:WorkCreationInvolvement,
+		mbo:RecordingCreationInvolvement,
+		mbo:ReleaseCreationInvolvement;
 	rdfs:range mbo:Author;
 	rdfs:label "has Author"@en ;
-	rdfs:comment "the artist or publisher that is involved in the creation of a musical work."@en .
+	rdfs:comment "the artist that is involved in the creation of a musical artefact."@en .
 
-mbo:typeOfInvolvement a rdf:Property;
-	rdfs:domain mbo:CreationInvolvement;
-	rdfs:range xsd:string;
-	rdfs:label "type of involvement"@en ;
-	rdfs:comment "the type of the involvement in the creation of a musical work."@en .
+mbo:kindOfInvolvement a rdf:Property;
+	rdfs:domain mbo:WorkCreationInvolvement;
+	rdfs:range mbo:WorkCreationInvolvementType;
+	rdfs:label "kind of involvement"@en ;
+	rdfs:comment "the kind of the involvement in the creation of a musical work."@en .
 
 mbo:splitFromPerformance a rdf:Property;
-	rdfs:domain mbo:CreationInvolvement;
+	rdfs:domain mbo:WorkCreationInvolvement,
+		mbo:RecordingCreationInvolvement,
+		mbo:ReleaseCreationInvolvement;
 	rdfs:range xsd:float;
 	xsd:minInclusive 0;
 	xsd:maxInclusive 100;
@@ -712,7 +661,9 @@ mbo:splitFromPerformance a rdf:Property;
 	rdfs:comment "the split the author gets from performance royalties."@en .
 
 mbo:splitFromReplication a rdf:Property;
-	rdfs:domain mbo:CreationInvolvement;
+	rdfs:domain mbo:WorkCreationInvolvement,
+		mbo:RecordingCreationInvolvement,
+		mbo:ReleaseCreationInvolvement;
 	rdfs:range xsd:float;
 	xsd:minInclusive 0;
 	xsd:maxInclusive 100;
@@ -770,7 +721,7 @@ mbo:royaltyStatementFor a rdf:Property;
 		mbo:Release,
 		mbo:Artist,
 		mbo:Label;
-	rdfs:label "royalty statement for artist"@en ;
+	rdfs:label "royalty statement for"@en ;
 	rdfs:comment "links to the resource, the royalty statement is connected to."@en .
 
 mbo:royaltyStatementTitle a rdf:Property;
@@ -1015,3 +966,89 @@ mbo:ccsCategory a rdf:Property;
 	rdfs:range xsd:string;
 	rdfs:label "Copyright Collecting Society Category"@en ;
 	rdfs:comment "The Category the live performance has to be reported to the copyright collecting society"@en .
+	
+mbo:WorkCreationInvolvementType a owl:Class;
+	rdfs:label "Creation Involvement Type"@en ;
+	rdfs:comment "Describes the specific involvement in creation of an (artistic) work"@en .
+	
+mbo:ComposerAuthor a mbo:WorkCreationInvolvementType;
+	rdfs:label "Composer"@en ;
+	rdfs:comment "Involved as a Composer in the creation of a musical work."@en .
+
+mbo:LyricsAuthor a mbo:WorkCreationInvolvementType;
+	rdfs:label "Texter"@en ;
+	rdfs:comment "Involved as a Texter in the creation of a musical work."@en .
+	
+mbo:ArrangementAuthor a mbo:WorkCreationInvolvementType;
+	rdfs:label "Arranger"@en ;
+	rdfs:comment "Involved as an Arranger in the creation of a musical work."@en .
+	
+mbo:RecordingCreationInvolvementType a owl:Class;
+	rdfs:label "Recording Creation Involvement Type"@en ;
+	rdfs:comment "Describes the specific involvement in creation of a recording"@en .
+
+mbo:Mixer a mbo:RecordingCreationInvolvementType;
+	rdfs:label "Mixer"@en ;
+	rdfs:comment "Involved as a Mixer in the creation of a recording."@en .
+
+mbo:Masterer a mbo:RecordingCreationInvolvementType;
+	rdfs:label "Masterer"@en ;
+	rdfs:comment "Involved as a Masterer in the creation of a recording."@en .
+
+mbo:Remixer a mbo:RecordingCreationInvolvementType;
+	rdfs:label "Remixer"@en ;
+	rdfs:comment "Involved as a Remixer in the creation of a recording."@en .
+	
+mbo:ReleaseCreationInvolvementType a owl:Class;
+	rdfs:label "Release Creation Involvement Type"@en ;
+	rdfs:comment "Describes the specific involvement in creation of a release"@en .
+
+mbo:Photographer a mbo:ReleaseCreationInvolvementType;
+	rdfs:label "Photographer"@en ;
+	rdfs:comment "Involved as a Photographer in the creation of a release."@en .
+
+mbo:Sequencer a mbo:ReleaseCreationInvolvementType;
+	rdfs:label "Sequencer"@en ;
+	rdfs:comment "Involved as a Sequencer in the creation of a release."@en .
+
+mbo:Compiler a mbo:ReleaseCreationInvolvementType;
+	rdfs:label "Compiler"@en ;
+	rdfs:comment "Involved as a Compiler in the creation of a release."@en .
+
+mbo:ArtworkDesigner a mbo:ReleaseCreationInvolvementType;
+	rdfs:label "Artwork Designer"@en ;
+	rdfs:comment "Involved as an Artwork Designer in the creation of a release."@en .
+
+
+mbo:RecordingCreationInvolvement a owl:Class;
+	rdfs:label "Recording Creation Involvement"@en ;
+	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a recording."@en .
+
+mbo:hasRecordingContribution a rdf:Property;
+	rdfs:domain mbo:Recording;
+	rdfs:range mbo:RecordingCreationInvolvement;
+	rdfs:label "has contribution"@en ;
+	rdfs:comment "represents an involvement in the creation of a recording."@en .
+
+mbo:kindOfInvolvementForRecording a rdf:Property;
+	rdfs:domain mbo:RecordingCreationInvolvement;
+	rdfs:range mbo:RecordingCreationInvolvementType;
+	rdfs:label "kind of involvement"@en ;
+	rdfs:comment "the kind of the involvement in the creation of a recording."@en .
+
+
+mbo:ReleaseCreationInvolvement a owl:Class;
+	rdfs:label "Release Creation Involvement"@en ;
+	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a release."@en .
+
+mbo:hasReleaseContribution a rdf:Property;
+	rdfs:domain mbo:Release;
+	rdfs:range mbo:ReleaseCreationInvolvement;
+	rdfs:label "has contribution"@en ;
+	rdfs:comment "represents an involvement in the creation of a release."@en .
+
+mbo:kindOfInvolvementForRelease a rdf:Property;
+	rdfs:domain mbo:ReleaseCreationInvolvement;
+	rdfs:range mbo:ReleaseCreationInvolvementType;
+	rdfs:label "kind of involvement"@en ;
+	rdfs:comment "the kind of the involvement in the creation of a release."@en .
