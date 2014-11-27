@@ -623,7 +623,7 @@ mbo:tag a rdf:Property;
 	rdfs:comment "A describing tag of the entity"@en .
 
 mbo:WorkCreationInvolvement a owl:Class;
-	rdfs:label "Creation Involvement"@en ;
+	rdfs:label "Work Creation Involvement"@en ;
 	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a musical work."@en .
 
 mbo:hasContribution a rdf:Property;
