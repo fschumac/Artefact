@@ -626,7 +626,7 @@ mbo:WorkCreationInvolvement a owl:Class;
 	rdfs:label "Work Creation Involvement"@en ;
 	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a musical work."@en .
 
-mbo:hasContribution a rdf:Property;
+mbo:hasWorkContribution a rdf:Property;
 	rdfs:domain mbo:Work;
 	rdfs:range mbo:WorkCreationInvolvement;
 	rdfs:label "has contribution"@en ;
