@@ -12,7 +12,8 @@
 
 
 <> a owl:Ontology ;
-   rdfs:label "Music Business Ontology" .
+   rdfs:label "Music Business Ontology" ;
+   owl:versionInfo "V0.5 2014/nov/27" .
 
 
 mbo:Label a owl:Class;
@@ -188,11 +189,6 @@ mbo:containsTrack a rdf:Property;
 	rdfs:range mbo:Track;
 	rdfs:label "Contains track"@en ;
 	rdfs:comment "links a release with the tracks it contains."@en .
-
-mbo:madeBy rdfs:subPropertyOf dc:creator;
-	rdfs:domain mbo:Release;
-	rdfs:range mbo:Artist;
-	rdfs:label "Maker"@en .
 
 mbo:catalogueNumber a rdf:Property;
 	rdfs:domain mbo:Release,
@@ -388,7 +384,7 @@ mbo:explicitLyrics a rdf:Property;
 
 mbo:creditArtist a rdf:Property;
 	rdfs:domain mbo:Recording;
-	rdfs:range mbo:Author;
+	rdfs:range mbo:ArtistPerson;
 	rdfs:label "Credit Artist"@en .
 
 mbo:RecordingContract a owl:Class;
