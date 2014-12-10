@@ -603,11 +603,35 @@ mbo:containsRelease a rdf:Property;
 	rdfs:label "contains Release"@en ;
 	rdfs:comment "a specific release of a release group"@en .
 
-mbo:releaseGroupType a rdf:Property;
+mbo:hasReleaseGroupType a rdf:Property;
 	rdfs:domain mbo:ReleaseGroup;
 	rdfs:range xsd:string;
 	rdfs:label "Release Group Type"@en ;
 	rdfs:comment "describes which kind a release group is, like 'album', 'ep', 'single', 'broadcast' or 'other'"@en .
+
+mbo:ReleaseGroupType a owl:Class;
+	rdfs:label "Release Group Type"@en ;
+	rdfs:comment "The kind og the release group, like 'album', 'ep', 'single', 'broadcast' or 'other'"@en .
+
+mbo:ReleaseGroupTypeAlbum a mbo:ReleaseGroupType;
+	rdfs:label "Album"@en ;
+	rdfs:comment "The release is of type 'album'"@en .
+
+mbo:ReleaseGroupTypeEp a mbo:ReleaseGroupType;
+	rdfs:label "Ep"@en ;
+	rdfs:comment "The release is of type 'ep'"@en .
+
+mbo:ReleaseGroupTypeBroadcast a mbo:ReleaseGroupType;
+	rdfs:label "Broadcast"@en ;
+	rdfs:comment "The release is of type 'broadcast'"@en .
+
+mbo:ReleaseGroupTypeOther a mbo:ReleaseGroupType;
+	rdfs:label "Other"@en ;
+	rdfs:comment "The release is of type 'other'"@en .
+
+mbo:ReleaseGroupTypeSingle a mbo:ReleaseGroupType;
+	rdfs:label "Single"@en ;
+	rdfs:comment "The release is of type 'single'"@en .
 
 mbo:firstReleaseDate a rdf:Property;
 	rdfs:domain mbo:ReleaseGroup;
