@@ -635,9 +635,9 @@ mbo:hasWorkRightShare a rdf:Property;
 mbo:ownsWorkRightShare a rdf:Property;
 	rdfs:domain mbo:Author,
 		mbo:Label;
-	rdfs:rabge mbo:WorkRightShare;
+	rdfs:range mbo:WorkRightShare;
 	rdfs:label "owns work right share"@en ;
-	rdfs:comment "the author or label that owns a right on a mus work."@en .
+	rdfs:comment "the author or label that owns a right on a musical work."@en .
 
 mbo:typeOfWorkRightShare a rdf:Property;
 	rdfs:domain mbo:WorkRightShare;
