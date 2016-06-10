@@ -95,7 +95,7 @@ mbo:textLanguage a rdf:Property ;
 
 mbo:filmMusic a rdf:Property ;
 	rdfs:domain mbo:Work;
-	rdfs:range db:Film;
+	rdfs:range xsd:String;
 	rdfs:label "Film Music for"@en.
 
 mbo:beteiligungsart a rdf:Property ;
@@ -159,20 +159,12 @@ mbo:PublisherEmployee a owl:Class;
 	rdfs:subClassOf foaf:Person;	
 	rdfs:label "Publisher Employee"@en .
 
-# replaced by rdfs:label
-# mbo:title a rdf:Property;
-# 	rdfs:domain mbo:Work;
-# 	rdfs:domain mbo:ReleaseGroup;
-# 	rdfs:domain mbo:Release;
-# 	rdfs:range xsd:string;
-# 	rdfs:label "Title"@en ;
-# 	owl:sameAs rdfs:label.
-
-mbo:length a rdf:Property;
-	rdfs:domain mbo:Recording;
+mbo:duration a rdf:Property;
+	rdfs:domain mbo:Recording,
+		mbo:Work;
 	rdfs:range xsd:duration;
-	rdfs:label "Length"@en ;
-	rdfs:comment "The lenght of a recording."@en .
+	rdfs:label "Duration"@en ;
+	rdfs:comment "The duration of a song."@en .
 
 mbo:registratedFor a rdf:Property;
 	rdfs:domain mbo:Work;
@@ -223,7 +215,7 @@ mbo:streamingPlayer a rdf:Property;
 
 mbo:producedIn a rdf:Property;
 	rdfs:domain mbo:Release;
-	rdfs:range db:PopulatedPlace;
+	rdfs:range mbo:Region;
 	rdfs:label "Produced in"@en .
 
 mbo:releaseFormat a owl:DatatypeProperty;
@@ -244,7 +236,6 @@ mbo:Digital a mbo:Medium;
 	rdfs:label "digital"@en .
 
 mbo:Producer a owl:Class;
-	rdfs:subClassOf mbo:Author;
 	rdfs:label "Producer"@en .
 
 mbo:producedBy a rdf:Property;
@@ -502,25 +493,18 @@ mbo:sortName a rdf:Property;
 	rdfs:label "Sort Name"@en ;
 	rdfs:comment "The sortname can be used to ensure correct sorting of the object"@en .
 
-mbo:annotation a rdf:Property;
-	rdfs:domain mbo:Artist,
-		mbo:ReleaseGroup,
-		mbo:Release,
-		mbo:Recording,
-		mbo:Work;
-	rdfs:range xsd:string;
-	rdfs:label "Annotation"@en ;
-	rdfs:comment "A descriptive text about the element"@en ;
-	owl:sameAs rdfs:comment .
-
 mbo:ipi a rdf:Property;
-	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:Artist,
+		mbo:Author,
+		mbo:Label;
 	rdfs:range xsd:string;
 	rdfs:label "Interested Parties Information Code (IPI)"@en ;
 	rdfs:comment "The Interested Parties Information Code (IPI) is an identifying number assigned in the CISAC database to each Interested Party in musical rights management."@en .
 
 mbo:isni a rdf:Property;
-	rdfs:domain mbo:Artist;
+	rdfs:domain mbo:Artist,
+		mbo:Author,
+		mbo:Label;
 	rdfs:range xsd:string;
 	rdfs:label "International Standard Name Identifier (ISNI)"@en ;
 	rdfs:comment "The International Standard Name Identifier (ISNI) is an ISO standard for uniquely identifying the public identities of contributors to media content."@en .
@@ -533,13 +517,13 @@ mbo:gender a rdf:Property;
 
 mbo:beginArea a rdf:Property;
 	rdfs:domain mbo:Artist;
-	rdfs:range db:PopulatedPlace;
+	rdfs:range mbo:Region;
 	rdfs:label "Begin Area"@en ;
 	rdfs:comment "The area (city, country) where the artist started its activity"@en .
 
 mbo:area a rdf:Property;
 	rdfs:domain mbo:Artist;
-	rdfs:range db:PopulatedPlace;
+	rdfs:range mbo:Region;
 	rdfs:label "Area"@en ;
 	rdfs:comment "The area (city, country) where the artist is/was activ"@en .
 
@@ -566,14 +550,6 @@ mbo:alias a rdf:Property;
 	rdfs:range xsd:string;
 	rdfs:label "Alias"@en ;
 	rdfs:comment "Other names of the artist"@en .
-
-mbo:disambiguation a rdf:Property;
-	rdfs:domain mbo:Artist;
-	rdfs:domain mbo:ReleaseGroup;
-	rdfs:domain mbo:Release;
-	rdfs:range xsd:string;
-	rdfs:label "Disambiguation"@en ;
-	rdfs:comment "A description of the element to distingush it from elements with the same or similar names"@en .
 	
 mbo:hasRelease a rdf:Property;
 	rdfs:domain mbo:Artist;
@@ -646,32 +622,31 @@ mbo:tag a rdf:Property;
 	rdfs:label "Tag"@en ;
 	rdfs:comment "A describing tag of the entity"@en .
 
-mbo:WorkCreationInvolvement a owl:Class;
-	rdfs:label "Work Creation Involvement"@en ;
-	rdfs:comment "Represents the involvement of an agent (artist or publisher) in the creation of a musical work."@en .
+mbo:WorkRightShare a owl:Class;
+	rdfs:label "Work Right Share"@en ;
+	rdfs:comment "Represents the rights of an agent (artist or publisher) at a musical work."@en .
 
-mbo:hasWorkContribution a rdf:Property;
+mbo:hasWorkRightShare a rdf:Property;
 	rdfs:domain mbo:Work;
-	rdfs:range mbo:WorkCreationInvolvement;
-	rdfs:label "has contribution"@en ;
-	rdfs:comment "represents an involvement in the creation of a musical work."@en .
+	rdfs:range mbo:WorkRightShare;
+	rdfs:label "has right share"@en ;
+	rdfs:comment "represents a right regarding a musical work."@en .
 
-mbo:hasAuthor a rdf:Property;
-	rdfs:domain mbo:WorkCreationInvolvement,
-		mbo:RecordingCreationInvolvement,
-		mbo:ReleaseCreationInvolvement;
-	rdfs:range mbo:Author;
-	rdfs:label "has Author"@en ;
-	rdfs:comment "the artist that is involved in the creation of a musical artefact."@en .
+mbo:ownsWorkRightShare a rdf:Property;
+	rdfs:domain mbo:Author,
+		mbo:Label;
+	rdfs:rabge mbo:WorkRightShare;
+	rdfs:label "owns work right share"@en ;
+	rdfs:comment "the author or label that owns a right on a mus work."@en .
 
-mbo:kindOfInvolvement a rdf:Property;
-	rdfs:domain mbo:WorkCreationInvolvement;
-	rdfs:range mbo:WorkCreationInvolvementType;
-	rdfs:label "kind of involvement"@en ;
-	rdfs:comment "the kind of the involvement in the creation of a musical work."@en .
+mbo:typeOfWorkRightShare a rdf:Property;
+	rdfs:domain mbo:WorkRightShare;
+	rdfs:range mbo:WorkRightShareType;
+	rdfs:label "type of right at work share"@en ;
+	rdfs:comment "the type of the share at a musical work."@en .
 
-mbo:splitFromPerformance a rdf:Property;
-	rdfs:domain mbo:WorkCreationInvolvement,
+mbo:shareFromPerformance a rdf:Property;
+	rdfs:domain mbo:WorkRightShare,
 		mbo:RecordingCreationInvolvement,
 		mbo:ReleaseCreationInvolvement;
 	rdfs:range xsd:float;
@@ -680,8 +655,8 @@ mbo:splitFromPerformance a rdf:Property;
 	rdfs:label "split from performance"@en ;
 	rdfs:comment "the split the author gets from performance royalties."@en .
 
-mbo:splitFromReplication a rdf:Property;
-	rdfs:domain mbo:WorkCreationInvolvement,
+mbo:shareFromReplication a rdf:Property;
+	rdfs:domain mbo:WorkRightShare,
 		mbo:RecordingCreationInvolvement,
 		mbo:ReleaseCreationInvolvement;
 	rdfs:range xsd:float;
@@ -915,7 +890,7 @@ mbo:Organiser a owl:Class;
 mbo:city a rdf:Property;
 	rdfs:domain mbo:Venue,
 		mbo:Organiser;
-	rdfs:range db:City;
+	rdfs:range mbo:Region;
 	rdfs:label "City"@en ;
 	rdfs:comment "The city a venue or organiser is located"@en .
 
@@ -987,21 +962,25 @@ mbo:ccsCategory a rdf:Property;
 	rdfs:label "Copyright Collecting Society Category"@en ;
 	rdfs:comment "The Category the live performance has to be reported to the copyright collecting society"@en .
 	
-mbo:WorkCreationInvolvementType a owl:Class;
-	rdfs:label "Creation Involvement Type"@en ;
-	rdfs:comment "Describes the specific involvement in creation of an (artistic) work"@en .
+mbo:WorkRightShareType a owl:Class;
+	rdfs:label "Work right share type"@en ;
+	rdfs:comment "Describes the type of the right of an (artistic) work (f.e. composer, texter, arranger, administrator"@en .
 	
-mbo:ComposerAuthor a mbo:WorkCreationInvolvementType;
+mbo:WorkRightShareTypeComposer a mbo:WorkRightShareType;
 	rdfs:label "Composer"@en ;
 	rdfs:comment "Involved as a Composer in the creation of a musical work."@en .
 
-mbo:LyricsAuthor a mbo:WorkCreationInvolvementType;
+mbo:WorkRightShareTypeTexter a mbo:WorkRightShareType;
 	rdfs:label "Texter"@en ;
 	rdfs:comment "Involved as a Texter in the creation of a musical work."@en .
 	
-mbo:ArrangementAuthor a mbo:WorkCreationInvolvementType;
+mbo:WorkRightShareTypeArranger a mbo:WorkRightShareType;
 	rdfs:label "Arranger"@en ;
 	rdfs:comment "Involved as an Arranger in the creation of a musical work."@en .
+	
+mbo:WorkRightShareTypeAdministrator a mbo:WorkRightShareType;
+	rdfs:label "Administrator"@en ;
+	rdfs:comment "Involved as an Administrator (Label) in a musical work."@en .
 	
 mbo:RecordingCreationInvolvementType a owl:Class;
 	rdfs:label "Recording Creation Involvement Type"@en ;
