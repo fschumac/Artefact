@@ -235,6 +235,9 @@ mbo:CD a mbo:Medium;
 mbo:Digital a mbo:Medium;
 	rdfs:label "digital"@en .
 
+mbo:DVD a mbo:Medium;
+	rdfs:label "DVD"@en .
+
 mbo:Producer a owl:Class;
 	rdfs:label "Producer"@en .
 
