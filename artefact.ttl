@@ -341,11 +341,25 @@ mbo:instrumentation a rdf:Property;
 
 mbo:vocals a rdf:Property;
 	rdfs:domain mbo:Recording;
-	rdfs:range "female";
-	rdfs:range "male";
-	rdfs:range "choir";
-	rdfs:range "instrumental";
-	rdfs:label "Vocals"@en .
+	rdfs:range mbo:VocalType;
+	rdfs:label "Vocals"@en ;
+	rdfs:comment "The vocals used in a song"@en .
+
+mbo:VocalType a owl:Class;
+	rdfs:label "Vocal Type"@en ;
+	rdfs:comment "Describes the type of vocals, like [female] or [sopran]"@en .
+	
+mbo:VocalTypeFemale a mbo:VocalType;
+	rdfs:label "Female"@en ;
+	rdfs:comment "Vocals sung by a female singer"@en .
+
+mbo:VocalTypeMale a mbo:VocalType;
+	rdfs:label "Male"@en ;
+	rdfs:comment "Vocals sung by a male singer"@en .
+
+mbo:VocalTypeChoir a mbo:VocalType;
+	rdfs:label "Choir"@en ;
+	rdfs:comment "Vocals sung by a choir"@en .
 
 mbo:mood a rdf:Property;
 	rdfs:domain mbo:Recording;
@@ -367,9 +381,21 @@ mbo:potpourri a rdf:Property;
 
 mbo:version a rdf:Property;
 	rdfs:domain mbo:Recording;
-	rdfs:range "remix";
-	rdfs:range "radio edit";
-	rdfs:label "Version"@en .
+	rdfs:range mbo:RecordingVersion;
+	rdfs:label "Version"@en ;
+	rdfs:comment "The version of the recording, f.e. [Remix] or [Radio Edit]"@en .
+
+mbo:RecordingVersion a owl:Class;
+	rdfs:label "Recording Version"@en ;
+	rdfs:comment "The version of the recording, f.e. [Remix] or [Radio Edit]"@en .
+	
+mbo:RecordingVersionRemix a mbo:RecordingVersion;
+	rdfs:label "Remix"@en ;
+	rdfs:comment "Marks a recording a remix"@en .
+
+mbo:RecordingVersionRadioEdit a mbo:RecordingVersion;
+	rdfs:label "Radio Edit"@en ;
+	rdfs:comment "Marks a recording a short version, usually used for airplays"@en .
 
 mbo:explicitLyrics a rdf:Property;
 	rdfs:domain mbo:Work;
