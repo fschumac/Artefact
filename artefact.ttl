@@ -44,7 +44,8 @@ mbo:Author a owl:Class;
 	rdfs:label "Author"@en .
 
 mbo:pseudonym a rdf:Property;
-	rdfs:domain foaf:Person;
+	rdfs:domain mbo:Artist,
+		mbo:Author;
 	rdfs:range xsd:string;
 	rdfs:label "Pseudonym"@en .
 
