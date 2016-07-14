@@ -178,10 +178,10 @@ mbo:Release a owl:Class;
 	rdfs:comment "A publication of musical works, usually consists of one or more songs"@en .
 
 mbo:containsTrack a rdf:Property;
-	rdfs:domain mbo:Release;
+	rdfs:domain mbo:ReleaseMedium;
 	rdfs:range mbo:Track;
 	rdfs:label "Contains track"@en ;
-	rdfs:comment "links a release with the tracks it contains."@en .
+	rdfs:comment "links a release medium with the tracks it contains."@en .
 
 mbo:catalogueNumber a rdf:Property;
 	rdfs:domain mbo:Release,
@@ -219,24 +219,34 @@ mbo:producedIn a rdf:Property;
 	rdfs:range mbo:Region;
 	rdfs:label "Produced in"@en .
 
-mbo:releaseFormat a owl:DatatypeProperty;
+mbo:ReleaseMedium a owl:Class;
+	rdfs:label "Release Medium"@en ;
+	rdfs:comment "The Medium on which the release is presented"@en .
+
+mbo:containsReleaseMedium a rdf:Property;
 	rdfs:domain mbo:Release;
-	rdfs:range mbo:Medium;
+	rdfs:range mbo:ReleaseMedium;
+	rdfs:label "contains medium"@en ;
+	rdfs:comment "the medium on which the release is presented"@en .
+	
+mbo:releaseFormat a rdf:Property;
+	rdfs:domain mbo:ReleaseMedium;
+	rdfs:range mbo:ReleaseMediumType;
 	rdfs:label "Release format"@en .
 
-mbo:Medium a owl:Class;
+mbo:ReleaseMediumType a owl:Class;
 	rdfs:label "Medium"@en .
 
-mbo:LP a mbo:Medium;
+mbo:ReleaseMediumTypeLP a mbo:ReleaseMediumType;
 	rdfs:label "LP"@en .
 
-mbo:CD a mbo:Medium;
+mbo:ReleaseMediumTypeCD a mbo:ReleaseMediumType;
 	rdfs:label "CD"@en .
 
-mbo:Digital a mbo:Medium;
+mbo:ReleaseMediumTypeDigital a mbo:ReleaseMediumType;
 	rdfs:label "digital"@en .
 
-mbo:DVD a mbo:Medium;
+mbo:ReleaseMediumTypeDVD a mbo:ReleaseMediumType;
 	rdfs:label "DVD"@en .
 
 mbo:Producer a owl:Class;
