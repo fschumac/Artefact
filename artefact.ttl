@@ -15,6 +15,10 @@
    rdfs:label "Music Business Ontology" ;
    owl:versionInfo "V0.5 2014/nov/27" .
 
+# For the support of the tools we add a label to the used external URIs
+rdf:type rdfs:label "Type".
+rdfs:label rdfs:label "Label".
+rdfs:comment rdfs:label "Comment".
 
 mbo:Label a owl:Class;
 	rdfs:subClassOf foaf:Organization;
