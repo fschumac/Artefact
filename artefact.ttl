@@ -33,19 +33,19 @@ mbo:labelCode a rdf:Property, owl:InverseFunctionalProperty;
 mbo:Artist a owl:Class;
 	rdfs:subClassOf foaf:Agent;
 	rdfs:label "Artist"@en ;
-	rdfs:comment "An artist is a person or group/band that is performing music."@en 
+	rdfs:comment "An artist is a person or group/band that is performing music."@en .
 
 mbo:ArtistPerson a owl:Class;
 	rdfs:subClassOf foaf:Person;
 	rdfs:subClassOf mbo:Artist;
-	rdfs:label "Artist (Person)"@en .
-	rdfs:comment "An artist is a person that is performing music by playing an instrument or singing."@en 
+	rdfs:label "Artist (Person)"@en ;
+	rdfs:comment "An artist is a person that is performing music by playing an instrument or singing."@en .
 
 mbo:ArtistGroup a owl:Class;
 	rdfs:subClassOf foaf:Group;
 	rdfs:subClassOf mbo:Artist;
-	rdfs:label "Artist (Group)"@en .
-	rdfs:comment "An artist is a group/band that is performing music. A group consists of one ore more artists."@en 
+	rdfs:label "Artist (Group)"@en ;
+	rdfs:comment "An artist is a group/band that is performing music. A group consists of one ore more artists."@en .
 
 mbo:Author a owl:Class;
 	rdfs:subClassOf foaf:Person ;
