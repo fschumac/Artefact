@@ -24,35 +24,42 @@ mbo:Label a owl:Class;
 	rdfs:subClassOf foaf:Organization;
 	rdfs:label "Record Label"@en .
 
-mbo:labelCode a rdf:Property;
+mbo:labelCode a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Label;
 	rdfs:range xsd:integer;
-	rdfs:label "Label Code"@en .
+	rdfs:label "Label Code"@en ;
+	rdfs:comment "The Label Code (LC) is a unique four- or five- digit number (example : LC 12345) , the is awarded on request and to members free of charge for the labeling of phonograms by the German Collecting Society for Performance Rights (GVL)."@en .
 
 mbo:Artist a owl:Class;
 	rdfs:subClassOf foaf:Agent;
-	rdfs:label "Artist"@en .
+	rdfs:label "Artist"@en ;
+	rdfs:comment "An artist is a person or group/band that is performing music."@en 
 
 mbo:ArtistPerson a owl:Class;
 	rdfs:subClassOf foaf:Person;
 	rdfs:subClassOf mbo:Artist;
 	rdfs:label "Artist (Person)"@en .
+	rdfs:comment "An artist is a person that is performing music by playing an instrument or singing."@en 
 
 mbo:ArtistGroup a owl:Class;
 	rdfs:subClassOf foaf:Group;
 	rdfs:subClassOf mbo:Artist;
 	rdfs:label "Artist (Group)"@en .
+	rdfs:comment "An artist is a group/band that is performing music. A group consists of one ore more artists."@en 
 
 mbo:Author a owl:Class;
 	rdfs:subClassOf foaf:Person ;
-	rdfs:label "Author"@en .
+	rdfs:label "Author"@en ;
+	rdfs:comment "An author is a person, that composes, texts or arranges a musical work or a part of it."@en .
 
 mbo:pseudonym a rdf:Property;
 	rdfs:domain mbo:Artist,
 		mbo:Author;
 	rdfs:range xsd:string;
-	rdfs:label "Pseudonym"@en .
+	rdfs:label "Pseudonym"@en ;
+	rdfs:comment "A pseudonym is the artist name a person uses for publish musical works or to be adressed with as a musician."@en .
 
+# muss verfeinert werden (von / bis / ggf. Vertragsdetails ...)
 mbo:representedThrough a rdf:Property;
 	rdfs:domain mbo:Author;
 	rdfs:range mbo:Publisher;
@@ -60,16 +67,19 @@ mbo:representedThrough a rdf:Property;
 
 mbo:Publisher a owl:Class;
 	rdfs:subClassOf foaf:Organization;
-	rdfs:label "Publisher"@en .
+	rdfs:label "Publisher"@en ;
+	rdfs:comment "The term publisher refers to a person or company that is engaged in publishing musical works."@en .
 
-mbo:gemaNumber a rdf:Property;
+mbo:gemaMembershipNumber a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Publisher;
 	rdfs:range xsd:integer;
-	rdfs:label "GEMA number"@en .
+	rdfs:label "GEMA membership number"@en ;
+	rdfs:comment "The GEMA is the german copyright collecting society. The number is a unique identifier for a publisher by the GEMA."@en .
 
 mbo:Work a owl:Class;
 	owl:sameAs mo:MusicalWork;
-	rdfs:label "(Creative) Work"@en .
+	rdfs:label "Musical Work"@en ;
+	rdfs:comment "A (musical) work is a composition or the blueprint of a song."@en .
 
 mbo:publishedBy a rdf:Property ;
 	rdfs:domain mbo:Work;
@@ -81,13 +91,13 @@ mbo:coPublishedBy a rdf:Property ;
 	rdfs:range mbo:Publisher;
 	rdfs:label "Co-published by"@en .
 
-mbo:copyrightCollectiveNumber a rdf:Property ;
+mbo:copyrightCollectiveNumber a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Work;
 	rdfs:range xsd:string;
 	rdfs:label "Copyright Collective Number"@en ;
 	rdfs:comment "The number the responsible Copyright Collective Society (i.e. GEMA for Germany) assigned to the work" .
 
-mbo:iswcNumber a rdf:Property ;
+mbo:iswcNumber a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Work;
 	rdfs:range xsd:string;
 	rdfs:maxLength 13;
@@ -187,13 +197,13 @@ mbo:containsTrack a rdf:Property;
 	rdfs:label "Contains track"@en ;
 	rdfs:comment "links a release medium with the tracks it contains."@en .
 
-mbo:catalogueNumber a rdf:Property;
+mbo:catalogueNumber a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Release,
 		mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
-mbo:asin a rdf:Property;
+mbo:asin a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Amazon Standard Identification Number (ASIN)"@en .
@@ -335,14 +345,14 @@ mbo:represents a rdf:Property;
 	rdfs:label "represents"@en ;
 	rdfs:comment "Links a track that appears on a release to a recording."@en .
 
-mbo:isrcCode a rdf:Property;
+mbo:isrcCode a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:maxLength 12;
 	rdfs:label "ISRC Code"@en ;
 	rdfs:comment "The International Standard Recording Code of the recording."@en .
 
-mbo:appleIdentifier a rdf:Property;
+mbo:appleIdentifier a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Recording,
 		mbo:Release;
 	rdfs:range xsd:string;
@@ -520,7 +530,7 @@ mbo:trackNumber a rdf:Property;
 	rdfs:label "Track Number"@en ;
 	rdfs:comment "The position of the track on the release."@en .
 
-mbo:musicBrainzId a rdf:Property;
+mbo:musicBrainzId a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Artist,
 		mbo:ReleaseGroup,
 		mbo:Release,
@@ -537,7 +547,7 @@ mbo:sortName a rdf:Property;
 	rdfs:label "Sort Name"@en ;
 	rdfs:comment "The sortname can be used to ensure correct sorting of the object"@en .
 
-mbo:ipi a rdf:Property;
+mbo:ipi a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Artist,
 		mbo:Author,
 		mbo:Label;
@@ -545,7 +555,7 @@ mbo:ipi a rdf:Property;
 	rdfs:label "Interested Parties Information Code (IPI)"@en ;
 	rdfs:comment "The Interested Parties Information Code (IPI) is an identifying number assigned in the CISAC database to each Interested Party in musical rights management."@en .
 
-mbo:isni a rdf:Property;
+mbo:isni a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:domain mbo:Artist,
 		mbo:Author,
 		mbo:Label;
