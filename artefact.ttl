@@ -24,7 +24,7 @@ mbo:Label a owl:Class;
 	rdfs:subClassOf foaf:Organization;
 	rdfs:label "Record Label"@en .
 
-mbo:labelCode a rdf:Property, owl:InverseFunctionalProperty;
+mbo:labelCode a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Label;
 	rdfs:range xsd:integer;
 	rdfs:label "Label Code"@en ;
@@ -70,7 +70,7 @@ mbo:Publisher a owl:Class;
 	rdfs:label "Publisher"@en ;
 	rdfs:comment "The term publisher refers to a person or company that is engaged in publishing musical works."@en .
 
-mbo:gemaMembershipNumber a rdf:Property, owl:InverseFunctionalProperty;
+mbo:gemaMembershipNumber a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Publisher;
 	rdfs:range xsd:integer;
 	rdfs:label "GEMA membership number"@en ;
@@ -91,13 +91,13 @@ mbo:coPublishedBy a rdf:Property ;
 	rdfs:range mbo:Publisher;
 	rdfs:label "Co-published by"@en .
 
-mbo:copyrightCollectiveNumber a rdf:Property, owl:InverseFunctionalProperty;
+mbo:copyrightCollectiveNumber a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Work;
 	rdfs:range xsd:string;
 	rdfs:label "Copyright Collective Number"@en ;
 	rdfs:comment "The number the responsible Copyright Collective Society (i.e. GEMA for Germany) assigned to the work" .
 
-mbo:iswcNumber a rdf:Property, owl:InverseFunctionalProperty;
+mbo:iswcNumber a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Work;
 	rdfs:range xsd:string;
 	rdfs:maxLength 13;
@@ -197,13 +197,13 @@ mbo:containsTrack a rdf:Property;
 	rdfs:label "Contains track"@en ;
 	rdfs:comment "links a release medium with the tracks it contains."@en .
 
-mbo:catalogueNumber a rdf:Property, owl:InverseFunctionalProperty;
+mbo:catalogueNumber a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Release,
 		mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:label "Catalogue Number"@en .
 
-mbo:asin a rdf:Property, owl:InverseFunctionalProperty;
+mbo:asin a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Release;
 	rdfs:range xsd:string;
 	rdfs:label "Amazon Standard Identification Number (ASIN)"@en .
@@ -345,14 +345,14 @@ mbo:represents a rdf:Property;
 	rdfs:label "represents"@en ;
 	rdfs:comment "Links a track that appears on a release to a recording."@en .
 
-mbo:isrcCode a rdf:Property, owl:InverseFunctionalProperty;
+mbo:isrcCode a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Recording;
 	rdfs:range xsd:string;
 	rdfs:maxLength 12;
 	rdfs:label "ISRC Code"@en ;
 	rdfs:comment "The International Standard Recording Code of the recording."@en .
 
-mbo:appleIdentifier a rdf:Property, owl:InverseFunctionalProperty;
+mbo:appleIdentifier a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Recording,
 		mbo:Release;
 	rdfs:range xsd:string;
@@ -530,7 +530,7 @@ mbo:trackNumber a rdf:Property;
 	rdfs:label "Track Number"@en ;
 	rdfs:comment "The position of the track on the release."@en .
 
-mbo:musicBrainzId a rdf:Property, owl:InverseFunctionalProperty;
+mbo:musicBrainzId a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Artist,
 		mbo:ReleaseGroup,
 		mbo:Release,
@@ -547,7 +547,7 @@ mbo:sortName a rdf:Property;
 	rdfs:label "Sort Name"@en ;
 	rdfs:comment "The sortname can be used to ensure correct sorting of the object"@en .
 
-mbo:ipi a rdf:Property, owl:InverseFunctionalProperty;
+mbo:ipi a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Artist,
 		mbo:Author,
 		mbo:Label;
@@ -555,7 +555,7 @@ mbo:ipi a rdf:Property, owl:InverseFunctionalProperty;
 	rdfs:label "Interested Parties Information Code (IPI)"@en ;
 	rdfs:comment "The Interested Parties Information Code (IPI) is an identifying number assigned in the CISAC database to each Interested Party in musical rights management."@en .
 
-mbo:isni a rdf:Property, owl:InverseFunctionalProperty;
+mbo:isni a rdf:Property, owl:FunctionalProperty;
 	rdfs:domain mbo:Artist,
 		mbo:Author,
 		mbo:Label;
